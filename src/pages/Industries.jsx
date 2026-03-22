@@ -70,7 +70,7 @@ export default function Industries() {
         </div>
       </section>
 
-      <section className="bg-zinc-100 pb-8 md:pb-16">
+      <section className="bg-slate-200 pb-8 md:pb-16">
         <div className="max-w-7xl mx-auto px-6">
           {industries.map((industry, index) =>
           <IndustrySection

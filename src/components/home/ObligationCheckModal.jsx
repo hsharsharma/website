@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle2, Loader2, ArrowRight, ArrowLeft } from 'lucide-react';
-import { submitToFormspree } from '@/api/formspree';
 
 const businessTypes = [
   'Accounting',
@@ -46,18 +45,16 @@ export default function ObligationCheckModal({ open, onClose }) {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await submitToFormspree({
-        name: form.name,
-        company: form.business,
-        email: form.email,
-        phone: form.phone,
-        business_type: form.businessType,
-        other_info: form.otherInfo,
-        source: 'obligation_check',
-        _subject: `Tranche 2 Obligation Check – ${form.name}`,
+      await fetch('/.netlify/functions/send-obligation-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name, business: form.business, email: form.email,
+          phone: form.phone, businessType: form.businessType, otherInfo: form.otherInfo,
+        }),
       });
     } catch {
-      // fail silently
+      // fail silently — always show success to user
     } finally {
       setLoading(false);
       setSuccess(true);
