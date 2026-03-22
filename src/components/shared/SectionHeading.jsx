@@ -8,10 +8,10 @@ export default function SectionHeading({ label, title, description, center = tru
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-zinc-50 mb-8 md:mb-12 mx-auto text-center max-w-3xl"
+      className={`mb-8 md:mb-12 mx-auto text-center max-w-3xl ${light ? 'text-gray-900' : 'text-zinc-50'}`}
     >
       {label && (
-        <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4 bg-white/10 text-blue-200 border border-white/20">
+        <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4 ${light ? 'bg-[var(--brand-blue-light)] text-[var(--brand-blue)] border border-[var(--brand-blue)]/20' : 'bg-white/10 text-blue-200 border border-white/20'}`}>
           {label}
         </span>
       )}
@@ -19,7 +19,7 @@ export default function SectionHeading({ label, title, description, center = tru
         {title}
       </Tag>
       {description && (
-        <p className="text-blue-200 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+        <p className={`text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${light ? 'text-gray-500' : 'text-blue-200'}`}>
           {description}
         </p>
       )}

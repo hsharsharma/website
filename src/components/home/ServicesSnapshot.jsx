@@ -47,6 +47,7 @@ export default function ServicesSnapshot() {
     <section className="py-10 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
+          light
           label="Core Services"
           title="End-to-End AML Compliance"
           description="From client onboarding to personnel vetting and audit-ready record keeping — we cover every pillar of AML compliance for Tranche 2."
