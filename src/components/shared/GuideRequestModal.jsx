@@ -35,6 +35,31 @@ function isValidEmail(email) {
   return true;
 }
 
+const btnBase = {
+  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+  width: '100%', height: '3rem', borderRadius: '9999px', border: '1.5px solid #4A90E2',
+  background: 'transparent', color: '#4A90E2', fontSize: '1rem', fontWeight: 600,
+  cursor: 'pointer', transition: 'background 0.2s, color 0.2s',
+};
+
+function SubmitButton({ loading }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <button
+      type="submit"
+      disabled={loading}
+      style={{ ...btnBase, ...(hovered && !loading ? { background: '#4A90E2', color: '#fff' } : {}), ...(loading ? { opacity: 0.6, cursor: 'not-allowed' } : {}) }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {loading
+        ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending your guide…</>
+        : <><Download className="h-4 w-4" /> Get Your Free Guide</>
+      }
+    </button>
+  );
+}
+
 export default function GuideRequestModal({ open, onClose, guideName, guideKey, pageSource }) {
   const [form, setForm] = useState({ name: '', email: '', company: '', industry: '', phone: '' });
   const [errors, setErrors] = useState({});
@@ -216,17 +241,7 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
               {errors.industry && <p className="text-xs text-red-500 mt-1">{errors.industry}</p>}
             </div>
 
-            <Button
-              type="submit"
-              disabled={loading}
-              variant="outline"
-              className="w-full h-12 rounded-full border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300 font-semibold text-base"
-            >
-              {loading
-                ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending your guide…</>
-                : <><Download className="h-4 w-4 mr-2" /> Get Your Free Guide</>
-              }
-            </Button>
+            <SubmitButton loading={loading} />
 
             <p className="text-center text-xs text-gray-400">
               Your guide will be emailed to you instantly. No spam, ever.

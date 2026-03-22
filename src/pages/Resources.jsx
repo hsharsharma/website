@@ -13,6 +13,31 @@ const industryGuides = [
   { icon: Building2, title: 'Real Estate Agents AML Guide', description: 'Property transaction oversight, delayed CDD provisions, and AUSTRAC reporting for real estate professionals.', key: 'guide_real_estate', guideKey: 'real_estate', guideName: 'Real Estate Agents AML Guide' },
 ];
 
+const outlineBtn = {
+  base: {
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    borderRadius: '9999px', border: '1.5px solid #4A90E2', background: 'transparent',
+    color: '#4A90E2', padding: '0 2rem', height: '2.75rem', fontSize: '0.875rem',
+    fontWeight: 600, cursor: 'pointer', transition: 'background 0.2s, color 0.2s',
+  },
+  hover: { background: '#4A90E2', color: '#ffffff' },
+};
+
+function OutlineButton({ onClick, children, className = '' }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <button
+      onClick={onClick}
+      style={{ ...outlineBtn.base, ...(hovered ? outlineBtn.hover : {}) }}
+      className={className}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function Resources() {
   const [pdfMap, setPdfMap] = useState({});
   const [modal, setModal] = useState(null); // { guideName, guideKey, downloadUrl }
@@ -54,13 +79,9 @@ export default function Resources() {
                 <p className="text-gray-500 text-sm leading-relaxed mb-5">
                   A comprehensive overview of your AML obligations under Australia's Tranche 2 reforms. Suitable for all business types beginning their compliance journey.
                 </p>
-                <Button
-                  onClick={() => openModal('Complete Tranche 2 AML Guide', 'general')}
-                  variant="outline"
-                  className="rounded-full border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300 px-8 h-11 font-semibold"
-                >
+                <OutlineButton onClick={() => openModal('Complete Tranche 2 AML Guide', 'general')}>
                   Get the Complete AML Guide
-                </Button>
+                </OutlineButton>
               </div>
             </div>
           </motion.div>
@@ -90,13 +111,9 @@ export default function Resources() {
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-1">{guide.title}</h3>
                   <p className="text-sm text-[var(--brand-slate-light)] leading-relaxed mb-5 flex-1">{guide.description}</p>
-                  <Button
-                    onClick={() => openModal(guide.guideName, guide.guideKey)}
-                    variant="outline"
-                    className="rounded-full border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300 w-full"
-                  >
+                  <OutlineButton onClick={() => openModal(guide.guideName, guide.guideKey)} className="w-full">
                     Get Guide
-                  </Button>
+                  </OutlineButton>
                 </motion.div>
               ))}
             </div>
