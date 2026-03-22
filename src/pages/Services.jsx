@@ -45,7 +45,7 @@ const services = [
 },
 {
   icon: Plug,
-  title: 'AML Tool Integration',
+  title: 'AML App Integration',
   description: 'Compliance software designed for all industries. Automate onboarding, risk profiling, and reporting with our cloud-based platform.'
 },
 {

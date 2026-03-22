@@ -151,13 +151,13 @@ export const pageSEO = {
     path: '/Services',
   },
   amlTool: {
-    title: 'AML Compliance Software – Cloud-Based KYC & Risk Management Platform',
-    description: 'Cloud-based AML compliance tool for automated client onboarding, KYC/CDD tracking, risk profiling, name screening, transaction monitoring, and AUSTRAC reporting. Built for Australian professionals.',
+    title: 'AML Compliance App – Cloud-Based KYC & Risk Management Platform',
+    description: 'Cloud-based AML compliance app for automated client onboarding, KYC/CDD tracking, risk profiling, name screening, transaction monitoring, and AUSTRAC reporting. Built for Australian professionals.',
     keywords: [
-      'AML compliance software', 'AML tool', 'KYC software', 'CDD software',
+      'AML compliance software', 'AML app', 'AML tool', 'KYC software', 'CDD software',
       'AML compliance platform', 'risk profiling dashboard', 'name screening tool',
       'transaction monitoring software', 'AUSTRAC reporting tool', 'AML cloud platform',
-      'compliance automation', 'AML software Australia',
+      'compliance automation', 'AML software Australia', 'AML compliance app',
     ],
     path: '/AMLTool',
   },

@@ -36,7 +36,7 @@ const services = [
   },
   {
     icon: LayoutDashboard,
-    title: 'AML Tool Integration',
+    title: 'AML App Integration',
     description: 'Compliance dashboard with reminders, SMR/TTR templates, and 7-year audit-ready record keeping.',
     color: 'bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white',
   },
