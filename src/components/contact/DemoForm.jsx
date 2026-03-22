@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitToFormspree } from '@/api/formspree';
+import { submitDemoRequest } from '@/api/demoEmail';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -30,11 +30,7 @@ export default function DemoForm() {
     }
     setLoading(true);
     try {
-      await submitToFormspree({
-        ...form,
-        source: 'demo_booking',
-        _subject: `Demo Request – ${form.name}`,
-      });
+      await submitDemoRequest(form);
       setSubmitted(true);
       toast.success('Demo request submitted! We will be in touch shortly.');
     } catch {
