@@ -10,15 +10,20 @@ export default function Contact() {
   return (
     <div>
       <SEO {...pageSEO.contact} />
-      <section className="hero-gradient pt-20 pb-24">
+      <section className="bg-gray-50 pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            light
             as="h1"
             label="Get Started"
             title="Schedule Your AML Consultation"
             description="Talk to our experts and see how Lead AML can simplify compliance for your business and meet Tranche 2 obligations."
           />
+        </div>
+      </section>
 
+      <section className="bg-gray-50 pt-10 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
             {/* Info Side */}
             <motion.div
@@ -29,32 +34,32 @@ export default function Contact() {
               className="lg:col-span-2 space-y-8"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Calendar className="h-5 w-5 text-[var(--brand-teal)]" />
+                <div className="w-10 h-10 rounded-xl bg-[var(--brand-blue-light)] flex items-center justify-center flex-shrink-0">
+                  <Calendar className="h-5 w-5 text-[var(--brand-blue)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Free Consultation</h3>
-                  <p className="text-sm text-blue-200/80">30-minute no-obligation session with an AML expert to discuss your compliance needs.</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Free Consultation</h3>
+                  <p className="text-sm text-gray-600">30-minute no-obligation session with an AML expert to discuss your compliance needs.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Shield className="h-5 w-5 text-[var(--brand-teal)]" />
+                <div className="w-10 h-10 rounded-xl bg-[var(--brand-blue-light)] flex items-center justify-center flex-shrink-0">
+                  <Shield className="h-5 w-5 text-[var(--brand-blue)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Tranche 2 Ready</h3>
-                  <p className="text-sm text-blue-200/80">Get ahead of compliance requirements with practical, industry-specific guidance.</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Tranche 2 Ready</h3>
+                  <p className="text-sm text-gray-600">Get ahead of compliance requirements with practical, industry-specific guidance.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-[var(--brand-teal)]" />
+                <div className="w-10 h-10 rounded-xl bg-[var(--brand-blue-light)] flex items-center justify-center flex-shrink-0">
+                  <Mail className="h-5 w-5 text-[var(--brand-blue)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">Quick Response</h3>
-                  <p className="text-sm text-blue-200/80">We'll get back to you within 24 hours to confirm your consultation time.</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Quick Response</h3>
+                  <p className="text-sm text-gray-600">We'll get back to you within 24 hours to confirm your consultation time.</p>
                 </div>
               </div>
             </motion.div>

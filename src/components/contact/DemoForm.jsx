@@ -113,6 +113,12 @@ export default function DemoForm() {
           : <>Schedule My Demo <ArrowRight className="ml-2 h-4 w-4" /></>
         }
       </Button>
+      <p className="text-center text-sm text-gray-400 mt-3">
+        Not ready for a demo yet? Send us your query at{' '}
+        <a href="mailto:info@leadaml.com.au" className="text-[var(--brand-blue)] underline font-medium">
+          info@leadaml.com.au
+        </a>
+      </p>
     </form>
   );
 }

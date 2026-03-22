@@ -12,15 +12,20 @@ export default function AMLTool() {
   return (
     <div>
       <SEO {...pageSEO.amlTool} />
-      <section className="hero-gradient pt-20 pb-24">
+      <section className="bg-gray-50 pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            light
             as="h1"
             label="AML Tool"
             title="AML Compliance Made Simple"
             description="A cloud-based compliance platform designed for accountants, lawyers, conveyancers, jewelers, and bullion dealers. Automate your AML workflows and stay audit-ready."
           />
+        </div>
+      </section>
 
+      <section className="hero-gradient pt-10 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Tool Preview */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}

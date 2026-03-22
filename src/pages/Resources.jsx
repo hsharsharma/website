@@ -54,15 +54,20 @@ export default function Resources() {
   return (
     <div>
       <SEO {...pageSEO.resources} />
-      <section className="hero-gradient pt-20 pb-24">
+      <section className="bg-gray-50 pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            light
             as="h1"
             label="Resources"
             title="Free AML Guides for Your Industry"
             description="Download practical AML guides for accountants, lawyers, conveyancers, jewellers, bullion dealers, and real estate agents. Stay Tranche 2 ready and audit-ready."
           />
+        </div>
+      </section>
 
+      <section className="hero-gradient pt-10 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
           {/* SECTION A: Complete AML Guide */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -93,8 +98,8 @@ export default function Resources() {
           {/* SECTION B: Industry-Specific Guides */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-8 max-w-5xl mx-auto">
-              <BookOpen className="h-5 w-5 text-blue-200" />
-              <h2 className="text-xl font-bold text-white" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
+              <BookOpen className="h-5 w-5 text-[var(--brand-blue)]" />
+              <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
                 Industry-Specific AML Guides
               </h2>
             </div>
