@@ -8,7 +8,7 @@ export default function SectionHeading({ label, title, description, center = tru
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`mb-8 md:mb-12 mx-auto text-center max-w-3xl ${light ? 'text-gray-900' : 'text-zinc-50'}`}
+      className={`mb-8 md:mb-12 mx-auto text-center max-w-3xl ${light ? 'text-gray-900' : 'text-white'}`}
     >
       {label && (
         <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4 ${light ? 'bg-[var(--brand-blue-light)] text-[var(--brand-blue)] border border-[var(--brand-blue)]/20' : 'bg-white/10 text-blue-200 border border-white/20'}`}>

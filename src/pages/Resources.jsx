@@ -93,8 +93,8 @@ export default function Resources() {
           {/* SECTION B: Industry-Specific Guides */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-8 max-w-5xl mx-auto">
-              <BookOpen className="h-5 w-5 text-[var(--brand-blue)]" />
-              <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
+              <BookOpen className="h-5 w-5 text-blue-200" />
+              <h2 className="text-xl font-bold text-white" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
                 Industry-Specific AML Guides
               </h2>
             </div>
