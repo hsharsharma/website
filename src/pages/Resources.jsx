@@ -57,6 +57,7 @@ export default function Resources() {
       <section className="hero-gradient pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            as="h1"
             label="Resources"
             title="Free AML Guides for Your Industry"
             description="Download practical AML guides for accountants, lawyers, conveyancers, jewellers, bullion dealers, and real estate agents. Stay Tranche 2 ready and audit-ready."

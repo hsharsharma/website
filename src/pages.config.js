@@ -47,13 +47,14 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
-import AMLTool from './pages/AMLTool';
-import Contact from './pages/Contact';
-import FAQs from './pages/FAQs';
-import Home from './pages/Home';
-import Industries from './pages/Industries';
-import Resources from './pages/Resources';
-import Services from './pages/Services';
+import { lazy } from 'react';
+const AMLTool = lazy(() => import('./pages/AMLTool'));
+const Contact = lazy(() => import('./pages/Contact'));
+const FAQs = lazy(() => import('./pages/FAQs'));
+const Home = lazy(() => import('./pages/Home'));
+const Industries = lazy(() => import('./pages/Industries'));
+const Resources = lazy(() => import('./pages/Resources'));
+const Services = lazy(() => import('./pages/Services'));
 import __Layout from './Layout.jsx';
 
 

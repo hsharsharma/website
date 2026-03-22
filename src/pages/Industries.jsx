@@ -66,6 +66,7 @@ export default function Industries() {
       <section className="bg-[#2D4059] pt-8 md:pt-20 pb-4 md:pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            as="h1"
             label="Industries"
             title="AML Solutions Tailored to Your Industry"
             description="We understand that each profession has unique compliance requirements. Our industry-specific solutions ensure you meet Tranche 2 obligations with confidence." />

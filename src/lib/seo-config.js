@@ -75,6 +75,44 @@ export const faqSchema = {
   ],
 };
 
+// Service schema for Services page
+export const servicesSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  provider: { '@type': 'ProfessionalService', name: 'Lead AML', url: SITE_URL },
+  serviceType: 'AML Compliance Consulting',
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  description: 'Comprehensive AML consulting services including KYC/CDD implementation, risk assessment, name screening, transaction monitoring, and AUSTRAC reporting for Australian professionals.',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'AML Compliance Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AML Consulting & Advisory Services' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Client Onboarding & KYC/CDD Implementation' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Risk Assessment & Profiling' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Name Screening (PEP, Sanctions, Adverse Media)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Transaction Monitoring' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Suspicious Matter Reporting (SMR/TTR)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Staff Training & Personnel Due Diligence' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Audit-Ready Compliance Programs' } },
+    ],
+  },
+};
+
+// Breadcrumb schema generator
+export function breadcrumbSchema(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`,
+    })),
+  };
+}
+
 // Per-page SEO configuration
 export const pageSEO = {
   home: {

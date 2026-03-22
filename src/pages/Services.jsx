@@ -5,7 +5,7 @@ import ServiceCard from '../components/services/ServiceCard';
 import CTAButtons from '../components/shared/CTAButtons';
 import CTABanner from '../components/home/CTABanner';
 import SEO from '../components/shared/SEO';
-import { pageSEO } from '../lib/seo-config';
+import { pageSEO, servicesSchema } from '../lib/seo-config';
 
 const services = [
 {
@@ -58,10 +58,11 @@ const services = [
 export default function Services() {
   return (
     <div>
-      <SEO {...pageSEO.services} />
+      <SEO {...pageSEO.services} schema={servicesSchema} />
       <section className="bg-[#2D4059] pt-8 md:pt-20 pb-10 md:pb-24 hero-gradient">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            as="h1"
             label="Our Services"
             title="Trusted Tranche 2 Compliance"
             description="Lead AML offers comprehensive AML consulting services across industries in Australia. Our Tranche 2-ready solutions cover client onboarding, KYC/CDD, risk profiling, reporting, and audit-ready record keeping, ensuring your business stays compliant with AML/CTF laws." />

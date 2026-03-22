@@ -13,6 +13,7 @@ export default function Contact() {
       <section className="hero-gradient pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
+            as="h1"
             label="Get Started"
             title="Schedule Your AML Consultation"
             description="Talk to our experts and see how Lead AML can simplify compliance for your business and meet Tranche 2 obligations."

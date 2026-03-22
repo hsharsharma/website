@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+[build.processing]
+  [build.processing.html]
+    pretty_urls = true
+
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
@@ -19,6 +23,37 @@
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain"
+
+# Lowercase URL redirects (SEO canonical)
+[[redirects]]
+  from = "/industries"
+  to = "/Industries"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/Services"
+  status = 301
+
+[[redirects]]
+  from = "/amltool"
+  to = "/AMLTool"
+  status = 301
+
+[[redirects]]
+  from = "/resources"
+  to = "/Resources"
+  status = 301
+
+[[redirects]]
+  from = "/faqs"
+  to = "/FAQs"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/Contact"
+  status = 301
 
 # SPA fallback — static files (sitemap.xml, robots.txt, etc.) are served first by Netlify
 [[redirects]]
