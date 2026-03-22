@@ -63,20 +63,14 @@ export default function Industries() {
   return (
     <div>
       <SEO {...pageSEO.industries} />
-      <section className="bg-[#2D4059] pt-8 md:pt-20 pb-4 md:pb-8">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#243452] pt-8 md:pt-20 pb-8 md:pb-16 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 rounded-full blur-3xl" />
+        <div className="max-w-7xl mx-auto px-6 relative">
           <SectionHeading
             as="h1"
             label="Industries"
             title="AML Solutions Tailored to Your Industry"
             description="We understand that each profession has unique compliance requirements. Our industry-specific solutions ensure you meet Tranche 2 obligations with confidence." />
-
-        </div>
-      </section>
-
-      <section className="bg-[#243452] pb-8 md:pb-16 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 rounded-full blur-3xl" />
-        <div className="max-w-7xl mx-auto px-6 relative">
           {industries.map((industry, index) =>
           <IndustrySection
             key={industry.id}
