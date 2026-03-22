@@ -1,5 +1,5 @@
 export async function submitEnquiry(data) {
-  const res = await fetch('/.netlify/functions/send-enquiry-email', {
+  const res = await fetch('/api/send-enquiry-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

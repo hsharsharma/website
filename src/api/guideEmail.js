@@ -5,7 +5,7 @@
  *  3. Send an admin notification to info@leadaml.com.au
  */
 export async function submitGuideRequest(data) {
-  const res = await fetch('/.netlify/functions/send-guide-email', {
+  const res = await fetch('/api/send-guide-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

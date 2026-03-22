@@ -45,7 +45,7 @@ export default function ObligationCheckModal({ open, onClose }) {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await fetch('/.netlify/functions/send-obligation-email', {
+      await fetch('/api/send-obligation-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

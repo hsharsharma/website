@@ -1,5 +1,5 @@
 export async function submitDemoRequest(data) {
-  const res = await fetch('/.netlify/functions/send-demo-email', {
+  const res = await fetch('/api/send-demo-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
