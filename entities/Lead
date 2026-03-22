@@ -1,0 +1,78 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the lead"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "accountants",
+        "lawyers",
+        "conveyancers",
+        "jewelers_bullion",
+        "other"
+      ],
+      "description": "Industry type"
+    },
+    "business_type": {
+      "type": "string",
+      "description": "Type of business"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Preferred consultation date"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "demo_booking",
+        "guide_download",
+        "contact_form"
+      ],
+      "description": "How the lead was captured"
+    },
+    "guide_type": {
+      "type": "string",
+      "enum": [
+        "accountants",
+        "lawyers",
+        "conveyancers",
+        "jewelers_bullion",
+        "general"
+      ],
+      "description": "Which guide was downloaded"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "converted",
+        "closed"
+      ],
+      "default": "new",
+      "description": "Lead status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}

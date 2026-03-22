@@ -1,0 +1,36 @@
+{
+  "name": "SiteMedia",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique identifier for this media slot (e.g. hero_video, accountants_guide)"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable label"
+    },
+    "media_type": {
+      "type": "string",
+      "enum": [
+        "video",
+        "pdf"
+      ],
+      "description": "Type of media"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL to the uploaded file or YouTube/Vimeo embed URL"
+    },
+    "is_youtube": {
+      "type": "boolean",
+      "description": "True if the URL is a YouTube or Vimeo embed URL",
+      "default": false
+    }
+  },
+  "required": [
+    "key",
+    "label",
+    "media_type"
+  ]
+}
