@@ -108,50 +108,56 @@ exports.handler = async (event) => {
     console.warn('PDF fetch failed – will send link only:', err.message);
   }
 
+  const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent((company || '') + ' ' + (industry || ''))}`;
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent('Following up on the ' + guideLabel)}`;
+
   // ── Build email to USER ──────────────────────────────────────────────────
   const userHtml = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a1a;">
       <img src="${siteUrl}/logo.png" alt="Lead AML" style="height:56px;margin-bottom:28px;" />
       <p style="font-size:16px;">Hi ${name},</p>
       <p style="font-size:15px;line-height:1.7;">
-        Thank you for your interest! As requested, please find your PDF attached to this email.
+        Thank you for downloading the <strong>${guideLabel}</strong>.
       </p>
-      <p style="font-size:15px;"><strong>Guide:</strong> ${guideLabel}</p>
-      ${!attachment ? `
-      <p style="font-size:15px;">
-        <a href="${pdfPublicUrl}"
-           style="display:inline-block;background:#2563eb;color:#fff;padding:12px 24px;
-                  border-radius:999px;text-decoration:none;font-weight:600;margin-top:8px;">
-          Download Your Guide
-        </a>
-      </p>` : ''}
-      <p style="font-size:15px;line-height:1.7;margin-top:24px;">
-        If you have any questions or would like to discuss this further, feel free to reply directly to this email.
+      <p style="font-size:15px;line-height:1.7;">
+        At Lead AML, we know that navigating compliance obligations can be complex. We put together this guide to give you absolute clarity and help you get your AML done right from the start.
+      </p>
+      <p style="font-size:15px;line-height:1.7;">
+        📥 <strong>Download your guide:</strong> ${attachment
+          ? `Your PDF is attached to this email. If you have trouble viewing the attachment, <a href="${pdfPublicUrl}" style="color:#2563eb;">click here to download it directly</a>.`
+          : `<a href="${pdfPublicUrl}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:600;margin-top:8px;">Download Your Guide</a>`
+        }
+      </p>
+      <p style="font-size:15px;line-height:1.7;margin-top:20px;">
+        <strong>What's next?</strong> If you have questions after reading through the guide, or if you want to find out exactly how these regulations apply to ${company ? `<strong>${company}</strong>` : 'your business'}, we're here to help.
+      </p>
+      <p style="font-size:15px;line-height:1.7;">
+        Simply reply to this email to start a conversation, or reach out to us at
+        <a href="mailto:info@leadaml.com.au" style="color:#2563eb;">info@leadaml.com.au</a>.
       </p>
       <hr style="border:none;border-top:1px solid #e5e7eb;margin:28px 0;" />
       <p style="font-size:13px;color:#6b7280;">
         Best regards,<br/>
-        <strong>The Team at Lead AML</strong><br/>
-        <a href="mailto:info@leadaml.com.au" style="color:#2563eb;">info@leadaml.com.au</a>
+        <strong>The Team at Lead AML</strong> &mdash; <em>AML Done Right</em><br/>
+        <a href="mailto:info@leadaml.com.au" style="color:#2563eb;">info@leadaml.com.au</a> &nbsp;|&nbsp;
+        <a href="https://leadaml.com.au" style="color:#2563eb;">leadaml.com.au</a>
       </p>
     </div>`;
 
   // ── Build admin notification ─────────────────────────────────────────────
   const adminHtml = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a1a;">
-      <h2 style="color:#1e3a5f;margin-bottom:20px;">📥 New Guide Download Request</h2>
+      <h2 style="color:#1e3a5f;margin-bottom:4px;">🚨 New Lead Alert</h2>
+      <p style="font-size:15px;color:#6b7280;margin-top:0;margin-bottom:20px;">
+        <strong>${name}</strong> from <strong>${company || 'Unknown Company'}</strong> downloaded <strong>${guideLabel}</strong>
+      </p>
+      <p style="font-size:14px;color:#374151;margin-bottom:4px;">You have a new inbound lead from the website.</p>
+
+      <h3 style="color:#1e3a5f;margin-top:24px;margin-bottom:10px;">👤 Lead Details</h3>
       <table style="width:100%;border-collapse:collapse;font-size:15px;">
         <tr style="background:#f8fafc;">
-          <td style="padding:10px 14px;font-weight:600;width:38%;border-bottom:1px solid #e5e7eb;">Guide Requested</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;color:#2563eb;font-weight:600;">${guideLabel}</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Name</td>
+          <td style="padding:10px 14px;font-weight:600;width:38%;border-bottom:1px solid #e5e7eb;">Name</td>
           <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${name}</td>
-        </tr>
-        <tr style="background:#f8fafc;">
-          <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Email</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${email}</td>
         </tr>
         <tr>
           <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Company</td>
@@ -162,18 +168,39 @@ exports.handler = async (event) => {
           <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${industry || '—'}</td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Phone</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${phone || '—'}</td>
+          <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Email</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${email}</td>
         </tr>
         <tr style="background:#f8fafc;">
+          <td style="padding:10px 14px;font-weight:600;">Phone</td>
+          <td style="padding:10px 14px;">${phone || '—'}</td>
+        </tr>
+      </table>
+
+      <h3 style="color:#1e3a5f;margin-top:24px;margin-bottom:10px;">📄 Activity Details</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <tr style="background:#f8fafc;">
+          <td style="padding:10px 14px;font-weight:600;width:38%;border-bottom:1px solid #e5e7eb;">Guide Requested</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;color:#2563eb;font-weight:600;">${guideLabel}</td>
+        </tr>
+        <tr>
           <td style="padding:10px 14px;font-weight:600;border-bottom:1px solid #e5e7eb;">Source Page</td>
           <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;">${pageSource || '—'}</td>
         </tr>
-        <tr>
-          <td style="padding:10px 14px;font-weight:600;">Submitted At</td>
+        <tr style="background:#f8fafc;">
+          <td style="padding:10px 14px;font-weight:600;">Time Submitted</td>
           <td style="padding:10px 14px;">${timestamp}</td>
         </tr>
       </table>
+
+      <h3 style="color:#1e3a5f;margin-top:24px;margin-bottom:10px;">⚡ Quick Actions</h3>
+      <p style="font-size:15px;margin:8px 0;">
+        ✉️ <a href="${mailtoUrl}" style="color:#2563eb;font-weight:600;">Click here to email ${name}</a>
+        <span style="color:#6b7280;font-size:13px;"> — auto-drafts a follow-up email</span>
+      </p>
+      <p style="font-size:15px;margin:8px 0;">
+        🔍 <a href="${googleSearchUrl}" style="color:#2563eb;font-weight:600;">Search ${company || name} on Google</a>
+      </p>
     </div>`;
 
   try {
@@ -182,14 +209,14 @@ exports.handler = async (event) => {
       resend.emails.send({
         from: 'Lead AML <info@leadaml.com.au>',
         to: email,
-        subject: `Here is your requested PDF from Lead AML`,
+        subject: `Here is your guide to AML compliance: ${guideLabel}`,
         html: userHtml,
         ...(attachment ? { attachments: [attachment] } : {}),
       }),
       resend.emails.send({
         from: 'Lead AML Website <info@leadaml.com.au>',
         to: 'info@leadaml.com.au',
-        subject: `New Lead – Guide Download: ${guideLabel}`,
+        subject: `🚨 New Lead Alert: ${name} from ${company || 'Unknown'} downloaded ${guideLabel}`,
         html: adminHtml,
       }),
     ]);
