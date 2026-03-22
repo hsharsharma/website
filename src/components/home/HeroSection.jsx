@@ -259,16 +259,6 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-4 py-3 shadow-xl border border-gray-100 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[var(--brand-navy)] flex items-center justify-center">
-                <span className="text-white text-xs font-bold">T2</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-gray-900">Tranche 2 Ready</p>
-                <p className="text-xs text-gray-500">From 1 July 2026</p>
-              </div>
-            </div>
           </motion.div>
         </div>
 
