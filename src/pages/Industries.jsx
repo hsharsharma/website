@@ -70,8 +70,9 @@ export default function Industries() {
         </div>
       </section>
 
-      <section className="bg-slate-200 pb-8 md:pb-16">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#243452] pb-8 md:pb-16 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 rounded-full blur-3xl" />
+        <div className="max-w-7xl mx-auto px-6 relative">
           {industries.map((industry, index) =>
           <IndustrySection
             key={industry.id}

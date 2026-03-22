@@ -13,11 +13,13 @@ function DownloadButton({ label }) {
         onMouseLeave={() => setHovered(false)}
         style={{
           display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-          borderRadius: '9999px', border: 'none',
-          background: hovered ? '#3A7BD5' : '#4A90E2',
-          color: '#ffffff', padding: '0 1.5rem', height: '3rem',
+          borderRadius: '9999px',
+          border: '1.5px solid #2C3E5D',
+          background: hovered ? '#2C3E5D' : 'transparent',
+          color: hovered ? '#ffffff' : '#2C3E5D',
+          padding: '0 1.5rem', height: '2.75rem',
           fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
-          transition: 'background 0.2s', boxShadow: '0 4px 12px rgba(74,144,226,0.3)',
+          transition: 'background 0.2s, color 0.2s',
         }}
       >
         <Download style={{ width: '1rem', height: '1rem' }} />
@@ -34,10 +36,10 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6 }} className="bg-zinc-100 py-8 md:py-16 border-b border-gray-100 last:border-0">
+      transition={{ duration: 0.6 }} className="py-8 md:py-10">
 
 
-      <div className="bg-slate-100 flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
+      <div className="bg-white rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
         {/* Content */}
         <div className="flex-1 w-full">
           <div className="flex items-center gap-2.5 mb-4">
@@ -76,9 +78,9 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
 
         {/* Visual — hidden on mobile, shown on lg+ */}
         <div className="hidden lg:block flex-1 w-full">
-          <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[var(--brand-blue-light)] to-blue-50 flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoNzQsMTQ0LDIyNiwwLjA4KSIvPjwvc3ZnPg==')] opacity-50" />
-            <Icon className="h-24 w-24 text-[var(--brand-blue)]/20" />
+          <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#2D4059]/5 to-[#243452]/10 flex items-center justify-center relative overflow-hidden border border-gray-100">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoNDQsNjIsOTMsMC4wOCkiLz48L3N2Zz4=')] opacity-50" />
+            <Icon className="h-24 w-24 text-[#2C3E5D]/20" />
           </div>
         </div>
       </div>
