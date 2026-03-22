@@ -21,6 +21,22 @@ const businessTypes = [
   'None of the above',
 ];
 
+const navyBtn = {
+  base: { display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'0.4rem', borderRadius:'9999px', border:'1.5px solid #2C3E5D', background:'#2C3E5D', color:'#fff', padding:'0 1.5rem', height:'2.75rem', fontSize:'0.875rem', fontWeight:600, cursor:'pointer', transition:'opacity 0.2s', width:'100%' },
+  disabled: { opacity:0.5, cursor:'not-allowed' },
+};
+const outlineNavyBtn = {
+  base: { display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'0.4rem', borderRadius:'9999px', border:'1.5px solid #2C3E5D', background:'transparent', color:'#2C3E5D', padding:'0 1.5rem', height:'2.75rem', fontSize:'0.875rem', fontWeight:600, cursor:'pointer', transition:'background 0.2s, color 0.2s' },
+  hover: { background:'#2C3E5D', color:'#fff' },
+};
+function NavyButton({ onClick, disabled, children, style: extraStyle = {} }) {
+  return <button onClick={onClick} disabled={disabled} style={{ ...navyBtn.base, ...(disabled ? navyBtn.disabled : {}), ...extraStyle }}>{children}</button>;
+}
+function OutlineNavyButton({ onClick, children }) {
+  const [hovered, setHovered] = React.useState(false);
+  return <button onClick={onClick} style={{ ...outlineNavyBtn.base, ...(hovered ? outlineNavyBtn.hover : {}) }} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>{children}</button>;
+}
+
 export default function ObligationCheckModal({ open, onClose }) {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', businessType: '', otherInfo: '' });
@@ -67,7 +83,7 @@ export default function ObligationCheckModal({ open, onClose }) {
             <CheckCircle2 className="h-14 w-14 text-green-500 mx-auto mb-4" />
             <h3 className="text-lg font-bold text-gray-900 mb-2">Thanks! We'll be in touch.</h3>
             <p className="text-gray-500 text-sm">Our AML experts will review your details and get back to you within 24 hours.</p>
-            <Button onClick={handleClose} className="mt-6 bg-[var(--brand-navy)] text-white rounded-full px-8">Done</Button>
+            <NavyButton onClick={handleClose} style={{ width:'auto', marginTop:'1.5rem', padding:'0 2rem' }}>Done</NavyButton>
           </div>
         ) : (
           <>
@@ -100,13 +116,9 @@ export default function ObligationCheckModal({ open, onClose }) {
                     <Input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="04xx xxx xxx" />
                   </div>
                 </div>
-                <Button
-                  className="w-full bg-[var(--brand-navy)] text-white rounded-full h-11"
-                  onClick={() => setStep(2)}
-                  disabled={!form.name || !form.email}
-                >
-                  Next <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <NavyButton onClick={() => setStep(2)} disabled={!form.name || !form.email}>
+                  Next <ArrowRight className="h-4 w-4" />
+                </NavyButton>
               </div>
             )}
 
@@ -142,16 +154,12 @@ export default function ObligationCheckModal({ open, onClose }) {
                 )}
 
                 <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => setStep(1)} className="rounded-full">
-                    <ArrowLeft className="mr-1 h-4 w-4" /> Back
-                  </Button>
-                  <Button
-                    className="flex-1 bg-[var(--brand-navy)] text-white rounded-full h-11"
-                    onClick={handleSubmit}
-                    disabled={loading || !form.businessType}
-                  >
-                    {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Checking...</> : 'Submit & Check Obligation'}
-                  </Button>
+                  <OutlineNavyButton onClick={() => setStep(1)}>
+                    <ArrowLeft className="h-4 w-4" /> Back
+                  </OutlineNavyButton>
+                  <NavyButton onClick={handleSubmit} disabled={loading || !form.businessType} style={{ flex:1 }}>
+                    {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Checking...</> : 'Submit & Check Obligation'}
+                  </NavyButton>
                 </div>
               </div>
             )}
