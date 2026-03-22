@@ -4,7 +4,7 @@ import { createPageUrl } from '@/utils';
 import { Mail, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { submitToFormspree } from '@/api/formspree';
+import { submitEnquiry } from '@/api/enquiryEmail';
 import { siteConfig } from '@/lib/site-config';
 
 const footerLinks = [
@@ -49,12 +49,7 @@ export default function Footer() {
     if (!email) return;
     setSending(true);
     try {
-      await submitToFormspree({
-        name,
-        email,
-        source: 'footer_enquiry',
-        _subject: `Website Enquiry – ${name || email}`,
-      });
+      await submitEnquiry({ name, email });
     } catch {
       // fail silently
     } finally {
