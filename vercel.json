@@ -8,5 +8,8 @@
       "source": "/robots.txt",
       "headers": [{ "key": "Content-Type", "value": "text/plain" }]
     }
+  ],
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
