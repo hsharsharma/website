@@ -16,11 +16,11 @@ const industryGuides = [
 const outlineBtn = {
   base: {
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-    borderRadius: '9999px', border: '1.5px solid #4A90E2', background: 'transparent',
-    color: '#4A90E2', padding: '0 2rem', height: '2.75rem', fontSize: '0.875rem',
+    borderRadius: '9999px', border: '1.5px solid #2C3E5D', background: 'transparent',
+    color: '#2C3E5D', padding: '0 2rem', height: '2.75rem', fontSize: '0.875rem',
     fontWeight: 600, cursor: 'pointer', transition: 'background 0.2s, color 0.2s',
   },
-  hover: { background: '#4A90E2', color: '#ffffff' },
+  hover: { background: '#2C3E5D', color: '#ffffff' },
 };
 
 function OutlineButton({ onClick, children, className = '' }) {
