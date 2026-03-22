@@ -219,7 +219,8 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full font-semibold text-base"
+              variant="outline"
+              className="w-full h-12 rounded-full border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300 font-semibold text-base"
             >
               {loading
                 ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending your guide…</>

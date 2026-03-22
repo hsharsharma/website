@@ -56,7 +56,8 @@ export default function Resources() {
                 </p>
                 <Button
                   onClick={() => openModal('Complete Tranche 2 AML Guide', 'general')}
-                  className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-8 h-11 font-semibold"
+                  variant="outline"
+                  className="rounded-full border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300 px-8 h-11 font-semibold"
                 >
                   Get the Complete AML Guide
                 </Button>
