@@ -1,9 +1,10 @@
 {
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node@3"
+    }
+  },
   "rewrites": [
-    { "source": "/api/send-demo-email", "destination": "/api/send-demo-email" },
-    { "source": "/api/send-enquiry-email", "destination": "/api/send-enquiry-email" },
-    { "source": "/api/send-guide-email", "destination": "/api/send-guide-email" },
-    { "source": "/api/send-obligation-email", "destination": "/api/send-obligation-email" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
