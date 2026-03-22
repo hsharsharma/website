@@ -4,6 +4,8 @@ import { Calculator, Scale, Home as HomeIcon, Gem, Building2, BookOpen, FileText
 import SectionHeading from '../components/shared/SectionHeading';
 import { Button } from '@/components/ui/button';
 import GuideRequestModal from '../components/shared/GuideRequestModal';
+import SEO from '../components/shared/SEO';
+import { pageSEO } from '../lib/seo-config';
 
 const industryGuides = [
   { icon: Calculator, title: 'Accountants AML Guide', description: 'KYC/CDD, risk profiling, and SMR reporting for accounting firms navigating Tranche 2 obligations.', key: 'guide_accountants', guideKey: 'accountants', guideName: 'Accountants AML Guide' },
@@ -51,6 +53,7 @@ export default function Resources() {
 
   return (
     <div>
+      <SEO {...pageSEO.resources} />
       <section className="hero-gradient pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading

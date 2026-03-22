@@ -3,6 +3,8 @@ import { Calculator, Scale, Home as HomeIcon, Gem, Building2 } from 'lucide-reac
 import SectionHeading from '../components/shared/SectionHeading';
 import IndustrySection from '../components/industries/IndustrySection';
 import CTABanner from '../components/home/CTABanner';
+import SEO from '../components/shared/SEO';
+import { pageSEO } from '../lib/seo-config';
 
 const fivePillars = [
 'CDD & KYC Implementation – Verify and onboard clients compliantly',
@@ -60,6 +62,7 @@ const industries = [
 export default function Industries() {
   return (
     <div>
+      <SEO {...pageSEO.industries} />
       <section className="bg-[#2D4059] pt-8 md:pt-20 pb-4 md:pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading

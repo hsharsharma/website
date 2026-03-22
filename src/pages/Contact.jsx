@@ -3,10 +3,13 @@ import { motion } from 'framer-motion';
 import { Calendar, Mail, Shield } from 'lucide-react';
 import SectionHeading from '../components/shared/SectionHeading';
 import DemoForm from '../components/contact/DemoForm';
+import SEO from '../components/shared/SEO';
+import { pageSEO } from '../lib/seo-config';
 
 export default function Contact() {
   return (
     <div>
+      <SEO {...pageSEO.contact} />
       <section className="hero-gradient pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading

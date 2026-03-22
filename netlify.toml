@@ -9,6 +9,18 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# Custom headers for SEO
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+
+# SPA fallback — static files (sitemap.xml, robots.txt, etc.) are served first by Netlify
 [[redirects]]
   from = "/*"
   to = "/index.html"
