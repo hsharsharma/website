@@ -23,7 +23,7 @@ const businessTypes = [
 
 const navyBtn = {
   base: { display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'0.4rem', borderRadius:'9999px', border:'1.5px solid #2C3E5D', background:'#2C3E5D', color:'#fff', padding:'0 1.5rem', height:'2.75rem', fontSize:'0.875rem', fontWeight:600, cursor:'pointer', transition:'opacity 0.2s', width:'100%' },
-  disabled: { opacity:0.5, cursor:'not-allowed' },
+  disabled: { opacity:0.75, cursor:'not-allowed' },
 };
 const outlineNavyBtn = {
   base: { display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'0.4rem', borderRadius:'9999px', border:'1.5px solid #2C3E5D', background:'transparent', color:'#2C3E5D', padding:'0 1.5rem', height:'2.75rem', fontSize:'0.875rem', fontWeight:600, cursor:'pointer', transition:'background 0.2s, color 0.2s' },
@@ -126,19 +126,24 @@ export default function ObligationCheckModal({ open, onClose }) {
               <div className="space-y-4">
                 <p className="text-sm font-medium text-gray-700">Select your business type:</p>
                 <div className="grid grid-cols-2 gap-2">
-                  {businessTypes.map(bt => (
-                    <button
-                      key={bt}
-                      onClick={() => setForm({ ...form, businessType: bt })}
-                      className={`text-left px-4 py-2.5 rounded-xl text-sm border transition-all ${
-                        form.businessType === bt
-                          ? 'bg-[var(--brand-navy)] text-white border-[var(--brand-navy)]'
-                          : 'bg-white text-gray-700 border-gray-200 hover:border-[var(--brand-navy)]/40'
-                      }`}
-                    >
-                      {bt}
-                    </button>
-                  ))}
+                  {businessTypes.map(bt => {
+                    const selected = form.businessType === bt;
+                    return (
+                      <button
+                        key={bt}
+                        onClick={() => setForm({ ...form, businessType: bt })}
+                        style={{
+                          textAlign: 'left', padding: '0.625rem 1rem', borderRadius: '0.75rem',
+                          fontSize: '0.875rem', border: `1.5px solid ${selected ? '#2C3E5D' : '#e5e7eb'}`,
+                          background: selected ? '#2C3E5D' : '#fff',
+                          color: selected ? '#fff' : '#374151',
+                          cursor: 'pointer', transition: 'all 0.15s',
+                        }}
+                      >
+                        {bt}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {form.businessType === 'None of the above' && (
