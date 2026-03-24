@@ -33,10 +33,10 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
   return (
     <motion.div
       id={id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6 }} className="py-8 md:py-10">
+      transition={{ duration: 0.5 }} className="py-8 md:py-10">
 
 
       <div className="bg-white rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">

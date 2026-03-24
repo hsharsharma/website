@@ -57,10 +57,10 @@ export default function ServicesSnapshot() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
               className="group p-7 rounded-2xl bg-white border border-gray-100 hover:border-transparent hover:shadow-xl hover:shadow-gray-100/80 transition-all duration-400 flex flex-col"
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${service.color}`}>

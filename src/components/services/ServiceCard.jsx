@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 export default function ServiceCard({ icon: Icon, title, description, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.08 }} className="bg-slate-700 p-6 rounded-2xl group flex gap-5 border border-gray-100 hover:border-[var(--brand-blue)]/20 hover:shadow-xl hover:shadow-blue-50/50 transition-all duration-500 h-full">
+      transition={{ duration: 0.4, delay: index * 0.06 }} className="bg-slate-700 p-6 rounded-2xl group flex gap-5 border border-gray-100 hover:border-[var(--brand-blue)]/20 hover:shadow-xl hover:shadow-blue-50/50 transition-all duration-500 h-full">
       
       
       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--brand-blue-light)] flex items-center justify-center group-hover:bg-[var(--brand-blue)] transition-colors duration-300">

@@ -21,10 +21,10 @@ function FeatureCard({ feature, index }) {
   return (
     <motion.div
       key={feature.title}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="p-7 rounded-2xl bg-white border border-gray-100 transition-all duration-500 w-full sm:w-[calc(50%-12px)]"
