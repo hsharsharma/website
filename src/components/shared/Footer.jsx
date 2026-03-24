@@ -65,11 +65,13 @@ export default function Footer() {
           {/* Brand + Contact */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-5">
-              <img
-                src={siteConfig.logoFooter}
-                alt="Lead AML"
-                className="h-16 w-auto object-contain"
-              />
+              <Link to={createPageUrl('Home')}>
+                <img
+                  src={siteConfig.logoFooter}
+                  alt="Lead AML"
+                  className="h-16 w-auto object-contain"
+                />
+              </Link>
             </div>
             <p className="text-sm leading-relaxed mb-5 max-w-sm text-gray-200">
               Professional AML consulting and compliance tools for accountants, lawyers, conveyancers, jewelers, bullion dealers, and real estate agents across Australia.
