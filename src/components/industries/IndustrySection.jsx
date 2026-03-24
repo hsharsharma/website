@@ -30,11 +30,12 @@ function DownloadButton({ label }) {
 }
 
 export default function IndustrySection({ id, icon: Icon, title, intro, highlights, ctaLabel, imageAlt, reversed = false, specialFeatures = [] }) {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <motion.div
       id={id}
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
+      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5 }} className="py-8 md:py-10">
 

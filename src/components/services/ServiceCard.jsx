@@ -2,10 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function ServiceCard({ icon: Icon, title, description, index }) {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
+      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.06 }} className="bg-slate-700 p-6 rounded-2xl group flex gap-5 border border-gray-100 hover:border-[var(--brand-blue)]/20 hover:shadow-xl hover:shadow-blue-50/50 transition-all duration-500 h-full">
       

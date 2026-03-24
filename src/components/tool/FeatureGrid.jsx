@@ -17,12 +17,13 @@ const features = [
 
 function FeatureCard({ feature, index }) {
   const [hovered, setHovered] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const Icon = feature.icon;
   return (
     <motion.div
       key={feature.title}
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
+      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.06 }}
       onMouseEnter={() => setHovered(true)}

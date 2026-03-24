@@ -127,7 +127,7 @@ export const pageSEO = {
     path: '/',
   },
   industries: {
-    title: 'AML Compliance for Accountants, Lawyers, Real Estate & Jewellers | Lead AML',
+    title: 'AML Compliance for Real Estate, Lawyers, Accountants & Jewellers | Lead AML',
     description: 'Tailored AUSTRAC Tranche 2 compliance software and consulting for Australian real estate agents, law firms, accounting firms, and jewellers. Verify clients, manage risk, and stay compliant.',
     keywords: [
       'AML for accountants', 'AML for lawyers', 'AML for conveyancers',
@@ -138,6 +138,46 @@ export const pageSEO = {
       'KYC for accountants', 'CDD for lawyers', 'AML compliance Australia',
     ],
     path: '/Industries',
+  },
+  industryRealEstate: {
+    title: 'AML Compliance for Real Estate Agents | Lead AML',
+    description: 'Tailored AUSTRAC Tranche 2 compliance software and consulting for Australian real estate agents. Verify buyers, sellers, and manage risk seamlessly.',
+    keywords: [
+      'AML for real estate agents', 'AML real estate Australia', 'Tranche 2 real estate',
+      'AUSTRAC real estate compliance', 'KYC real estate agents', 'CDD real estate',
+      'real estate AML software', 'real estate compliance Australia',
+    ],
+    path: '/Industries#real-estate',
+  },
+  industryLawyers: {
+    title: 'AML/CTF Compliance for Law Firms | Lead AML',
+    description: 'Secure AML software and expert advisory for Australian law firms. Meet your Tranche 2 obligations, conduct KYC, and protect your practice effortlessly.',
+    keywords: [
+      'AML for law firms', 'AML for lawyers', 'Tranche 2 lawyers', 'legal AML compliance',
+      'AUSTRAC lawyers', 'KYC for law firms', 'AML/CTF law firms Australia',
+      'lawyer compliance software', 'solicitor AML obligations',
+    ],
+    path: '/Industries#lawyers',
+  },
+  industryAccountants: {
+    title: 'AML Compliance for Accountants | Lead AML Australia',
+    description: 'Streamline client onboarding and AUSTRAC reporting. Lead AML provides Tranche 2 compliance tools and consulting specifically for accounting firms.',
+    keywords: [
+      'AML for accountants', 'AML accountants Australia', 'Tranche 2 accountants',
+      'AUSTRAC accountants', 'accounting firm AML compliance', 'KYC for accountants',
+      'CDD for accounting firms', 'accountant AML software', 'AML compliance accountants',
+    ],
+    path: '/Industries#accountants',
+  },
+  industryJewellers: {
+    title: 'AML Compliance for Jewellers & Bullion | Lead AML',
+    description: 'Protect your high-value transactions. Lead AML offers discreet, fast KYC and compliance software for Australian jewellers and precious metal dealers.',
+    keywords: [
+      'AML for jewellers', 'AML for bullion dealers', 'Tranche 2 jewellers',
+      'precious metals AML compliance', 'AUSTRAC jewellers', 'KYC jewellers',
+      'bullion dealer compliance', 'jeweller AML software Australia',
+    ],
+    path: '/Industries#jewellers',
   },
   services: {
     title: 'Tranche 2 AML Consulting & Advisory | Lead AML',

@@ -43,6 +43,7 @@ const services = [
 ];
 
 export default function ServicesSnapshot() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <section className="py-10 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
@@ -57,8 +58,8 @@ export default function ServicesSnapshot() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
+              whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.06 }}
               className="group p-7 rounded-2xl bg-white border border-gray-100 hover:border-transparent hover:shadow-xl hover:shadow-gray-100/80 transition-all duration-400 flex flex-col"
