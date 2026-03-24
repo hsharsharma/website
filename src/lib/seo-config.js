@@ -116,8 +116,8 @@ export function breadcrumbSchema(items) {
 // Per-page SEO configuration
 export const pageSEO = {
   home: {
-    title: 'AML Compliance Consulting & Software for Australian Professionals',
-    description: 'Lead AML provides expert AML consulting, KYC/CDD implementation, and compliance software for accountants, lawyers, conveyancers, real estate agents, and jewelers. Get Tranche 2 ready before 1 July 2026.',
+    title: 'Lead AML | Tranche 2 Compliance Software & Consulting',
+    description: 'Get ready for July 1. Lead AML provides all-in-one AUSTRAC Tranche 2 compliance software, KYC tools, and expert consulting for Australian businesses.',
     keywords: [
       'AML compliance Australia', 'Tranche 2 AML', 'AML consulting', 'AML software',
       'AUSTRAC compliance', 'AML for accountants', 'AML for lawyers', 'AML for conveyancers',
@@ -127,8 +127,8 @@ export const pageSEO = {
     path: '/',
   },
   industries: {
-    title: 'AML Solutions for Accountants, Lawyers, Conveyancers, Real Estate & Jewelers',
-    description: 'Industry-specific AML compliance solutions for accountants, lawyers, conveyancers, jewelers, bullion dealers, and real estate agents. Meet Tranche 2 AML obligations with tailored KYC/CDD workflows.',
+    title: 'AML Compliance for Accountants, Lawyers, Real Estate & Jewellers | Lead AML',
+    description: 'Tailored AUSTRAC Tranche 2 compliance software and consulting for Australian real estate agents, law firms, accounting firms, and jewellers. Verify clients, manage risk, and stay compliant.',
     keywords: [
       'AML for accountants', 'AML for lawyers', 'AML for conveyancers',
       'AML for real estate agents', 'AML for jewelers', 'AML for bullion dealers',
@@ -140,8 +140,8 @@ export const pageSEO = {
     path: '/Industries',
   },
   services: {
-    title: 'AML Consulting Services – KYC, Risk Assessment, Compliance Programs',
-    description: 'Comprehensive AML consulting services including KYC/CDD implementation, risk assessment, name screening, transaction monitoring, SMR/TTR reporting, staff training, and audit-ready compliance programs.',
+    title: 'Tranche 2 AML Consulting & Advisory | Lead AML',
+    description: 'Need help preparing for AUSTRAC Tranche 2? Our expert AML consultants help Australian businesses build compliant, audit-ready AML/CTF programs.',
     keywords: [
       'AML consulting services', 'KYC implementation', 'CDD compliance', 'AML risk assessment',
       'name screening PEP sanctions', 'transaction monitoring', 'SMR reporting', 'TTR reporting',
@@ -151,8 +151,8 @@ export const pageSEO = {
     path: '/Services',
   },
   amlTool: {
-    title: 'AML Compliance App – Cloud-Based KYC & Risk Management Platform',
-    description: 'Cloud-based AML compliance app for automated client onboarding, KYC/CDD tracking, risk profiling, name screening, transaction monitoring, and AUSTRAC reporting. Built for Australian professionals.',
+    title: 'AML/CTF Compliance Software | Lead AML Platform',
+    description: 'Automate your AUSTRAC Tranche 2 obligations. The Lead AML platform streamlines KYC, customer due diligence, and risk assessments in one secure dashboard.',
     keywords: [
       'AML compliance software', 'AML app', 'AML tool', 'KYC software', 'CDD software',
       'AML compliance platform', 'risk profiling dashboard', 'name screening tool',
