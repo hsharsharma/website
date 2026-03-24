@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,10 +19,16 @@ const navItems = [
 export default function Layout({ children, currentPageName }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
+
+  const handleMobileNav = (page) => {
+    setMobileOpen(false);
+    navigate(createPageUrl(page));
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -72,24 +78,26 @@ export default function Layout({ children, currentPageName }) {
           <div className="lg:hidden bg-[var(--brand-navy-dark)] border-t border-white/10">
             <div className="px-6 py-4 space-y-1">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.page}
-                  to={createPageUrl(item.page)}
-                  onClick={() => setMobileOpen(false)}
-                  className={`block px-4 py-3 rounded-lg text-sm font-medium ${
+                  onClick={() => handleMobileNav(item.page)}
+                  className={`w-full text-left block px-4 py-3 rounded-lg text-sm font-medium ${
                     currentPageName === item.page
                       ? 'text-white bg-white/20'
                       : 'text-blue-100 hover:bg-white/10'
                   }`}
                 >
                   {item.label}
-                </Link>
+                </button>
               ))}
-              <Link to={createPageUrl('Contact')} onClick={() => setMobileOpen(false)}>
-                <Button className="w-full mt-2 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full">
+              <button
+                onClick={() => handleMobileNav('Contact')}
+                className="w-full mt-2"
+              >
+                <Button className="w-full bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full">
                   Book a Demo
                 </Button>
-              </Link>
+              </button>
             </div>
           </div>
         )}
