@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Download, CheckCircle2 } from 'lucide-react';
+import { Download, CheckCircle2, ArrowRight } from 'lucide-react';
 
 function DownloadButton({ label }) {
   const [hovered, setHovered] = useState(false);
@@ -29,7 +29,7 @@ function DownloadButton({ label }) {
   );
 }
 
-export default function IndustrySection({ id, icon: Icon, title, intro, highlights, ctaLabel, imageAlt, reversed = false, specialFeatures = [] }) {
+export default function IndustrySection({ id, icon: Icon, title, intro, highlights, ctaLabel, imageAlt, reversed = false, specialFeatures = [], sectorPath }) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <motion.div
@@ -74,7 +74,30 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
             </div>
           }
 
-          <DownloadButton label={ctaLabel} />
+          <div className="flex flex-wrap gap-3">
+            <DownloadButton label={ctaLabel} />
+            {sectorPath && (
+              <Link to={sectorPath}>
+                <button
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                    borderRadius: '9999px',
+                    border: '1.5px solid #2C3E5D',
+                    background: 'transparent',
+                    color: '#2C3E5D',
+                    padding: '0 1.5rem', height: '2.75rem',
+                    fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+                    transition: 'background 0.2s, color 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#2C3E5D'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2C3E5D'; }}
+                >
+                  Learn More
+                  <ArrowRight style={{ width: '1rem', height: '1rem' }} />
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Visual — hidden on mobile, shown on lg+ */}

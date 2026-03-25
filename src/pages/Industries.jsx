@@ -21,7 +21,8 @@ const industries = [
   title: 'Accountants',
   intro: 'Practical AML consulting for accounting firms. Ensure Tranche 2 readiness with our KYC/CDD workflows, risk assessment, name screening, and reporting support.',
   highlights: fivePillars,
-  ctaLabel: 'Download Accountants AML Guide'
+  ctaLabel: 'Download Accountants AML Guide',
+  sectorPath: '/Sectors/Accountants'
 },
 {
   id: 'lawyers',
@@ -29,7 +30,8 @@ const industries = [
   title: 'Lawyers',
   intro: 'AML compliance guidance for law firms, including trust account monitoring, KYC/CDD, name screening, and reporting obligations.',
   highlights: fivePillars,
-  ctaLabel: 'Download Lawyers AML Guide'
+  ctaLabel: 'Download Lawyers AML Guide',
+  sectorPath: '/Sectors/Lawyers'
 },
 {
   id: 'conveyancers',
@@ -38,6 +40,7 @@ const industries = [
   intro: 'AML compliance for property transactions. Smooth KYC/CDD, risk assessment, name screening, and reporting for conveyancers.',
   highlights: fivePillars,
   ctaLabel: 'Download Conveyancers AML Guide',
+  sectorPath: '/Sectors/Conveyancers',
   specialFeatures: ['Delayed CDD Workflows: Keep deals moving. Our platform manages AUSTRAC\'s "Delayed CDD" provisions, allowing you to proceed with time-sensitive property transactions legally while completing verification workflows within the permitted timeframes.']
 },
 {
@@ -46,7 +49,8 @@ const industries = [
   title: 'Jewelers & Bullion Dealers',
   intro: 'AML consulting for high-value goods, including KYC/CDD onboarding, name screening, and suspicious transaction monitoring.',
   highlights: fivePillars,
-  ctaLabel: 'Download Jewellers & Bullion Guide'
+  ctaLabel: 'Download Jewellers & Bullion Guide',
+  sectorPath: '/Sectors/Jewellers'
 },
 {
   id: 'real-estate',
@@ -55,6 +59,7 @@ const industries = [
   intro: 'Lead AML provides AML consulting for real estate agents, ensuring smooth compliance with Tranche 2 reforms. From KYC/CDD onboarding to reporting, we help property professionals manage risks and stay audit-ready.',
   highlights: fivePillars,
   ctaLabel: 'Download Real Estate Agents AML Guide',
+  sectorPath: '/Sectors/RealEstate',
   specialFeatures: ['Delayed CDD Workflows: Keep deals moving with AUSTRAC\'s "Delayed CDD" provisions for time-sensitive property transactions while completing verification within permitted timeframes.']
 }];
 
