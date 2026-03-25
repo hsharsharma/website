@@ -58,7 +58,7 @@ export default function Layout({ children, currentPageName }) {
 
           <div className="hidden lg:block">
             <Link to={createPageUrl('Contact')}>
-              <Button className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 text-sm font-semibold">
+              <Button className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-6 text-sm">
                 Book a Demo <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
             </Link>

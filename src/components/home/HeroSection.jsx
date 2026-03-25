@@ -159,7 +159,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 onClick={() => setShowConsultation(true)}
-                className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-7 h-11 text-base font-semibold shadow-lg transition-all duration-300">
+                className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-8 h-14 text-lg font-semibold shadow-lg transition-all duration-300">
                 Book a Free 15-Min Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

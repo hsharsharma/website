@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -9,12 +9,6 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AdminMedia from './pages/AdminMedia';
 import ScrollToTop from './components/shared/ScrollToTop';
-
-const AccountantsSector  = lazy(() => import('./pages/sectors/Accountants'));
-const LawyersSector      = lazy(() => import('./pages/sectors/Lawyers'));
-const ConveyancersSector = lazy(() => import('./pages/sectors/Conveyancers'));
-const JewellersSector    = lazy(() => import('./pages/sectors/Jewellers'));
-const RealEstateSector   = lazy(() => import('./pages/sectors/RealEstate'));
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -68,14 +62,6 @@ const AuthenticatedApp = () => {
           />
         ))}
         <Route path="/AdminMedia" element={<LayoutWrapper currentPageName="AdminMedia"><AdminMedia /></LayoutWrapper>} />
-
-        {/* Sector pages */}
-        <Route path="/Sectors/Accountants"  element={<LayoutWrapper currentPageName="Sectors"><AccountantsSector /></LayoutWrapper>} />
-        <Route path="/Sectors/Lawyers"      element={<LayoutWrapper currentPageName="Sectors"><LawyersSector /></LayoutWrapper>} />
-        <Route path="/Sectors/Conveyancers" element={<LayoutWrapper currentPageName="Sectors"><ConveyancersSector /></LayoutWrapper>} />
-        <Route path="/Sectors/Jewellers"    element={<LayoutWrapper currentPageName="Sectors"><JewellersSector /></LayoutWrapper>} />
-        <Route path="/Sectors/RealEstate"   element={<LayoutWrapper currentPageName="Sectors"><RealEstateSector /></LayoutWrapper>} />
-
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
