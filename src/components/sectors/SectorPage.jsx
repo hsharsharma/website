@@ -75,8 +75,9 @@ function HowWeHelpSection({ title, intro, bullets }) {
           {bullets.map((item, i) => {
             const hasColon = item.includes(':');
             const [bold, rest] = hasColon ? [item.split(':')[0], item.split(':').slice(1).join(':')] : [null, item];
+            const isLastOdd = bullets.length % 2 !== 0 && i === bullets.length - 1;
             return (
-              <div key={i} className="group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:shadow-blue-900/20 transition-all duration-300">
+              <div key={i} className={`group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:shadow-blue-900/20 transition-all duration-300 ${isLastOdd ? 'md:col-span-2 md:max-w-sm md:mx-auto w-full' : ''}`}>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-[#4A90E2] transition-colors duration-300">
                     <ChevronRight className="h-5 w-5 text-[#4A90E2] group-hover:text-white transition-colors duration-300" />
