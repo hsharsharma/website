@@ -47,8 +47,8 @@ export default function CredibilitySection() {
                 <stat.icon className="h-6 w-6 text-[var(--brand-teal)]" />
               </div>
               <p className="text-xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-sm font-medium text-blue-200 mb-1">{stat.label}</p>
-              <p className="text-xs text-blue-200/80">{stat.desc}</p>
+              <p className="text-sm font-medium text-blue-100/90 mb-1">{stat.label}</p>
+              <p className="text-xs text-blue-100/70">{stat.desc}</p>
             </motion.div>
           ))}
         </div>

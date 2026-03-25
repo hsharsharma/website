@@ -61,11 +61,11 @@ function YouTubeEmbed({ embedUrl, embedUrlUnmuted, thumbnailUrl, watchUrl }) {
 }
 
 const industries = [
-  { label: 'Accountants', icon: Calculator, page: 'Industries' },
-  { label: 'Lawyers', icon: Scale, page: 'Industries' },
-  { label: 'Conveyancers', icon: HomeIcon, page: 'Industries' },
-  { label: 'Jewelers & Bullion', icon: Gem, page: 'Industries' },
-  { label: 'Real Estate Agents', icon: Building2, page: 'Industries' },
+  { label: 'Accountants', icon: Calculator, path: '/Sectors/Accountants' },
+  { label: 'Lawyers', icon: Scale, path: '/Sectors/Lawyers' },
+  { label: 'Conveyancers', icon: HomeIcon, path: '/Sectors/Conveyancers' },
+  { label: 'Jewelers & Bullion', icon: Gem, path: '/Sectors/Jewellers' },
+  { label: 'Real Estate Agents', icon: Building2, path: '/Sectors/RealEstate' },
 ];
 
 /**
@@ -159,7 +159,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 onClick={() => setShowConsultation(true)}
-                className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-8 h-14 text-lg font-semibold shadow-lg transition-all duration-300">
+                className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-7 h-11 text-base font-semibold shadow-lg transition-all duration-300">
                 Book a Free 15-Min Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -170,7 +170,7 @@ export default function HeroSection() {
               {industries.map((ind) => (
                 <Link
                   key={ind.label}
-                  to={createPageUrl(ind.page)}
+                  to={ind.path}
                   className="group flex items-center gap-1.5 px-4 py-2.5 rounded-xl sm:rounded-full bg-white/10 border border-white/25 hover:bg-white/20 hover:border-white/50 transition-all duration-300 w-full sm:w-auto">
                   <ind.icon className="h-3.5 w-3.5 text-blue-200 group-hover:text-white transition-colors" />
                   <span className="text-sm font-medium text-blue-100 group-hover:text-white">{ind.label}</span>
@@ -268,7 +268,7 @@ export default function HeroSection() {
           className="mt-12 p-5 rounded-2xl bg-white/[0.08] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-white font-semibold text-base">Not sure if you're obligated?</p>
-            <p className="text-blue-200 text-sm mt-0.5">Check your Tranche 2 AML obligations in 2 minutes.</p>
+            <p className="text-blue-100/90 text-sm mt-0.5">Check your Tranche 2 AML obligations in 2 minutes.</p>
           </div>
           <Button
             onClick={() => setShowObligation(true)}

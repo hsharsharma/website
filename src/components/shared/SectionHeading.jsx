@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function SectionHeading({ label, title, description, center = true, light = false, as: Tag = 'h2' }) {
   const titleColor = light ? 'text-gray-900' : 'text-white';
-  const descColor = light ? 'text-gray-500' : 'text-blue-200';
+  const descColor = light ? 'text-gray-500' : 'text-blue-100/90';
   const labelStyle = light
     ? 'bg-[var(--brand-blue-light)] text-[var(--brand-blue)] border-[var(--brand-blue)]/20'
     : 'bg-white/10 text-blue-200 border-white/20';

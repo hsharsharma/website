@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import SectionHeading from '../components/shared/SectionHeading';
@@ -24,16 +23,9 @@ export default function AMLTool() {
         </div>
       </section>
 
-      <section className="hero-gradient pt-10 pb-24">
+      <section className="hero-gradient pt-10 pb-10">
         <div className="max-w-7xl mx-auto px-6">
-          {/* App Preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="max-w-5xl mx-auto mb-16"
-          >
+          <div className="max-w-5xl mx-auto mb-16">
             <Link to={createPageUrl('Contact')}>
               <img
                 src="/aml-compliance-app-lead-aml.png"
@@ -41,13 +33,10 @@ export default function AMLTool() {
                 className="w-full rounded-2xl shadow-2xl shadow-gray-300/30 cursor-pointer hover:opacity-90 transition-opacity"
               />
             </Link>
-          </motion.div>
+          </div>
 
           <FeatureGrid />
 
-          <div className="flex justify-center mt-12">
-            <CTAButtons />
-          </div>
         </div>
       </section>
 

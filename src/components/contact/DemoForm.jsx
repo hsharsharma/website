@@ -101,6 +101,7 @@ export default function DemoForm() {
         <Input
           type="date"
           value={form.preferred_date}
+          min={new Date().toISOString().split('T')[0]}
           onChange={(e) => setForm({ ...form, preferred_date: e.target.value })}
           className="h-11" />
       </div>
@@ -117,6 +118,10 @@ export default function DemoForm() {
         Not ready for a demo yet? Send us your query at{' '}
         <a href="mailto:info@leadaml.com.au" className="text-[var(--brand-blue)] underline font-medium">
           info@leadaml.com.au
+        </a>
+        {' '}or call us at{' '}
+        <a href="tel:+61416418176" className="text-[var(--brand-blue)] underline font-medium">
+          +61 416 418 176
         </a>
       </p>
     </form>

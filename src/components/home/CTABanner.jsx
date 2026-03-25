@@ -4,7 +4,7 @@ import CTAButtons from '../shared/CTAButtons';
 
 export default function CTABanner() {
   return (
-    <section className="py-10 md:py-24">
+    <section className="py-6 md:py-10">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export default function CTABanner() {
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal-400/10 rounded-full blur-3xl" />
 
           <div className="relative text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
               Ready to Get Compliant?
             </h2>
             <p className="text-[#2D4059] mb-3 text-lg">Book a free 15-minute consultation or download a free industry guide to get started.

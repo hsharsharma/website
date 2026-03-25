@@ -10,13 +10,25 @@ import { submitToFormspree } from '@/api/formspree';
 
 const industries = ['Accountants', 'Lawyers', 'Conveyancers', 'Jewelers & Bullion Dealers', 'Real Estate Agents', 'Other'];
 
+function isValidPhone(phone) {
+  if (!phone) return false;
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 8 && digits.length <= 15;
+}
+
 export default function ConsultationModal({ open, onClose }) {
   const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', industry: '', questions: '' });
+  const [phoneError, setPhoneError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isValidPhone(form.phone)) {
+      setPhoneError('Please enter a valid phone number.');
+      return;
+    }
+    setPhoneError('');
     setLoading(true);
     try {
       await submitToFormspree({
@@ -40,6 +52,7 @@ export default function ConsultationModal({ open, onClose }) {
 
   const handleClose = () => {
     setSuccess(false);
+    setPhoneError('');
     setForm({ name: '', business: '', email: '', phone: '', industry: '', questions: '' });
     onClose();
   };
@@ -75,8 +88,9 @@ export default function ConsultationModal({ open, onClose }) {
                 <Input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required placeholder="jane@smithco.com.au" />
               </div>
               <div>
-                <Label>Phone</Label>
-                <Input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="04xx xxx xxx" />
+                <Label>Phone *</Label>
+                <Input value={form.phone} onChange={e => { setForm({ ...form, phone: e.target.value }); setPhoneError(''); }} placeholder="04xx xxx xxx" className={phoneError ? 'border-red-400' : ''} />
+                {phoneError && <p className="text-xs text-red-500 mt-1">{phoneError}</p>}
               </div>
             </div>
             <div>

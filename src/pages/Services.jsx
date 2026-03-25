@@ -76,9 +76,6 @@ export default function Services() {
             )}
           </div>
 
-          <div className="flex justify-center">
-            <CTAButtons />
-          </div>
         </div>
       </section>
 

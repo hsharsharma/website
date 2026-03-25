@@ -24,6 +24,12 @@ const BLOCKED_DOMAINS = [
   'discard.email','fakeinbox.com','getairmail.com','filzmail.com',
 ];
 
+function isValidPhone(phone) {
+  if (!phone) return false;
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 8 && digits.length <= 15;
+}
+
 function isValidEmail(email) {
   if (!email) return false;
   const ok = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
@@ -77,6 +83,8 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
       e.company = 'Please enter your company name.';
     if (!form.industry)
       e.industry = 'Please select your industry.';
+    if (!isValidPhone(form.phone))
+      e.phone = 'Please enter a valid phone number.';
     return e;
   };
 
@@ -216,13 +224,14 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
                 {errors.company && <p className="text-xs text-red-500 mt-1">{errors.company}</p>}
               </div>
               <div>
-                <Label className="text-sm font-medium text-gray-700 mb-1 block">Phone (optional)</Label>
+                <Label className="text-sm font-medium text-gray-700 mb-1 block">Phone *</Label>
                 <Input
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   placeholder="+61 4XX XXX XXX"
-                  className="h-11"
+                  className={`h-11 ${errors.phone ? 'border-red-400' : ''}`}
                 />
+                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
               </div>
             </div>
 

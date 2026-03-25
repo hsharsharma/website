@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Mail, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
+import { Mail, Phone, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { submitEnquiry } from '@/api/enquiryEmail';
@@ -76,9 +76,13 @@ export default function Footer() {
             <p className="text-sm leading-relaxed mb-5 max-w-sm text-gray-200">
               Professional AML consulting and compliance tools for accountants, lawyers, conveyancers, jewelers, bullion dealers, and real estate agents across Australia.
             </p>
-            <a href="mailto:info@leadaml.com.au" className="flex items-center gap-2 text-sm text-[var(--brand-teal)] hover:text-[var(--brand-teal-dark)] transition-colors mb-6">
+            <a href="mailto:info@leadaml.com.au" className="flex items-center gap-2 text-sm text-[var(--brand-teal)] hover:text-[var(--brand-teal-dark)] transition-colors mb-2">
               <Mail className="h-4 w-4" />
               info@leadaml.com.au
+            </a>
+            <a href="tel:+61416418176" className="flex items-center gap-2 text-sm text-[var(--brand-teal)] hover:text-[var(--brand-teal-dark)] transition-colors mb-6">
+              <Phone className="h-4 w-4" />
+              +61 416 418 176
             </a>
 
             {!sent ? (
