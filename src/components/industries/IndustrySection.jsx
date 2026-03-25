@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Download, CheckCircle2, ArrowRight } from 'lucide-react';
-
-const SECTOR_LINKS = {
-  accountants:  '/Sectors/Accountants',
-  lawyers:      '/Sectors/Lawyers',
-  conveyancers: '/Sectors/Conveyancers',
-  jewelers:     '/Sectors/Jewellers',
-  'real-estate':'/Sectors/RealEstate',
-};
+import { Download, CheckCircle2 } from 'lucide-react';
 
 function DownloadButton({ label }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <Link
-      to={createPageUrl('Resources')}
-      className="inline-flex items-center gap-2 border-2 border-[#2C3E5D] text-[#2C3E5D] font-semibold px-6 rounded-full text-sm hover:bg-[#2C3E5D] hover:text-white transition-colors"
-      style={{ height: '2.75rem' }}
-    >
-        <Download className="h-4 w-4" />
+    <Link to={createPageUrl('Resources')}>
+      <button
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+          borderRadius: '9999px',
+          border: '1.5px solid #2C3E5D',
+          background: hovered ? '#2C3E5D' : 'transparent',
+          color: hovered ? '#ffffff' : '#2C3E5D',
+          padding: '0 1.5rem', height: '2.75rem',
+          fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer',
+          transition: 'background 0.2s, color 0.2s',
+        }}
+      >
+        <Download style={{ width: '1rem', height: '1rem' }} />
         {label}
+      </button>
     </Link>
   );
 }
 
 export default function IndustrySection({ id, icon: Icon, title, intro, highlights, ctaLabel, imageAlt, reversed = false, specialFeatures = [] }) {
-  const sectorLink = SECTOR_LINKS[id];
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <motion.div
@@ -71,18 +74,7 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
             </div>
           }
 
-          <div className="flex flex-wrap gap-3">
-            <DownloadButton label={ctaLabel} />
-            {sectorLink && (
-              <Link
-                to={sectorLink}
-                className="inline-flex items-center gap-2 border-2 border-[#2C3E5D] text-[#2C3E5D] font-semibold px-6 rounded-full text-sm hover:bg-[#2C3E5D] hover:text-white transition-colors"
-                style={{ height: '2.75rem' }}
-              >
-                Learn More <ArrowRight className="h-4 w-4" />
-              </Link>
-            )}
-          </div>
+          <DownloadButton label={ctaLabel} />
         </div>
 
         {/* Visual — hidden on mobile, shown on lg+ */}
