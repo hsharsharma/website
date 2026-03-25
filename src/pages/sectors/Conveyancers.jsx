@@ -4,22 +4,22 @@ import SectorPage from '../../components/sectors/SectorPage';
 
 const config = {
   seo: {
-    title: 'AML Compliance for Conveyancers | Lead AML',
-    description: "Don't let Tranche 2 red tape delay your property transfers. Lead AML provides fast KYC onboarding, Delayed CDD workflows, and automated risk profiling for conveyancing practices.",
-    keywords: ['AML for conveyancers', 'conveyancer AML compliance', 'Tranche 2 conveyancers', 'AUSTRAC conveyancers', 'delayed CDD conveyancing', 'KYC property settlement'],
+    title: 'AML Compliance for Conveyancers | Tranche 2 Software | Lead AML',
+    description: 'Secure your conveyancing practice before the July 2026 Tranche 2 deadline. Fast, automated property buyer KYC, PEP screening, and AML compliance software.',
+    keywords: ['AML for conveyancers Australia', 'property conveyancing Tranche 2', 'AML software for conveyancing', 'KYC for property buyers', 'real estate settlement AML'],
     path: '/Sectors/Conveyancers',
   },
   hero: {
     sectorName: 'Conveyancers',
     label: 'AML for Conveyancers',
-    headline: 'AML Compliance for Conveyancers: Keep Your Settlements Moving',
+    headline: 'Streamlined Tranche 2 AML Compliance for Conveyancers',
     subheadline: "Don't let Tranche 2 red tape delay your property transfers. Lead AML provides fast KYC onboarding, Delayed CDD workflows, and automated risk profiling for conveyancing practices.",
     guideLabel: 'Download Conveyancers AML Guide',
     guideName: 'Conveyancers AML Compliance Guide',
     guideKey: 'conveyancers',
   },
   obligationsSection: {
-    title: 'Real Estate Transfers Are Under the Spotlight',
+    title: 'Navigating the July 2026 AML Obligations for Property Transfers',
     intro: 'From 1 July 2026, conveyancers must have a fully operational AML/CTF program in place before assisting in the planning or execution of any real estate transaction. Because high-value property transfers are a primary vehicle for laundering illicit funds, the regulatory scrutiny on settlement agents is intense.',
     bullets: [
       'Enrol with AUSTRAC and establish a compliant AML/CTF program before 1 July 2026.',
@@ -36,11 +36,11 @@ const config = {
     },
   },
   risksSection: {
-    title: 'The Lead AML Advantage for Conveyancers',
+    title: 'Fast, Automated Buyer & Seller Verification',
     intro: "AUSTRAC allows for specific operational exemptions to keep property transactions moving, but these must be strictly documented. Lead AML's software automates these complex rules — so you focus on settlements, not paperwork.",
   },
   howWeHelpSection: {
-    title: 'Purpose-Built for Conveyancing Practices',
+    title: 'Seamless PEP and Sanctions Screening for Settlements',
     intro: null,
     bullets: [
       'Delayed CDD Workflows: In fast-paced transactions, our platform legally manages "Delayed CDD", allowing you to delay full identity verification on counterparties until after contracts are exchanged (or before settlement), keeping deals on track.',

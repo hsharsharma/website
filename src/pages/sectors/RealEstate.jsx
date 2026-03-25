@@ -4,22 +4,22 @@ import SectorPage from '../../components/sectors/SectorPage';
 
 const config = {
   seo: {
-    title: 'AML Compliance for Real Estate Agents | Lead AML',
-    description: 'Tailored AUSTRAC Tranche 2 compliance software and consulting for Australian real estate agents. Verify buyers, sellers, and manage risk seamlessly.',
-    keywords: ['AML for real estate agents', 'AML real estate Australia', 'Tranche 2 real estate', 'AUSTRAC real estate compliance', 'KYC real estate agents', 'delayed CDD real estate'],
+    title: 'AML for Real Estate Agents | Tranche 2 Compliance | Lead AML',
+    description: 'Time is running out for July 2026. Protect your real estate agency with Lead AML\'s Tranche 2 compliance consulting, buyer screening, and KYC software.',
+    keywords: ['AML for real estate agents Australia', 'Tranche 2 real estate compliance', 'property AML software', 'real estate buyer screening', 'real estate KYC'],
     path: '/Sectors/RealEstate',
   },
   hero: {
     sectorName: 'Real Estate Agents',
     label: 'AML for Real Estate',
-    headline: 'AML Compliance for Real Estate Agents: List and Sell with Confidence',
+    headline: 'Tranche 2 AML Software & Consulting for Real Estate Agents',
     subheadline: 'Tranche 2 is coming to the property market. Lead AML provides custom risk assessments, mobile KYC tools, and automated screening so your agents can focus on selling.',
     guideLabel: 'Download Real Estate AML Guide',
     guideName: 'Real Estate Agents AML Compliance Guide',
     guideKey: 'real_estate',
   },
   obligationsSection: {
-    title: 'The Property Market is Changing: 1 July 2026',
+    title: 'The July 2026 Deadline: What Real Estate Agencies Need to Know',
     intro: 'Real estate is considered a "very high and stable" vulnerability for money laundering in Australia. From 1 July 2026, real estate agents and buyer\'s agents must be enrolled with AUSTRAC and have an active AML/CTF program in place before brokering the purchase, sale, or transfer of any property.',
     bullets: [
       'Your obligations cover both the buyer and the seller in every transaction.',
@@ -37,11 +37,11 @@ const config = {
     },
   },
   risksSection: {
-    title: "How Lead AML Streamlines Agency Operations",
+    title: "Compliance That Doesn't Slow Down Your Sales",
     intro: "Implementing compliance manually using AUSTRAC's 80+ page starter kits is a massive burden that takes your agents away from listing and selling. Lead AML digitises the entire process — so your team spends time with clients, not paperwork.",
   },
   howWeHelpSection: {
-    title: 'Built for Real Estate Agencies',
+    title: 'Instant Buyer KYC and Name Screening',
     intro: null,
     bullets: [
       'Mobile-Friendly Vendor & Buyer KYC: Fast, template-driven identity verification workflows that your salespeople can use on the go — at the property, in the office, or at auction.',

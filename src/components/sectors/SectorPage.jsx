@@ -70,7 +70,7 @@ function HowWeHelpSection({ title, intro, bullets }) {
   return (
     <section className="py-10 md:py-20" style={HERO_GRADIENT}>
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading label="How We Help" title={title} description={intro} />
+        <SectionHeading label="How We Help" title={title} description={intro} as="h3" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {bullets.map((item, i) => {
             const hasColon = item.includes(':');

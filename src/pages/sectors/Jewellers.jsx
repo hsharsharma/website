@@ -4,22 +4,22 @@ import SectorPage from '../../components/sectors/SectorPage';
 
 const config = {
   seo: {
-    title: 'AML Compliance for Jewellers & Bullion | Lead AML',
-    description: 'Protect your high-value transactions. Lead AML offers discreet, fast KYC and compliance software for Australian jewellers and precious metal dealers.',
-    keywords: ['AML for jewellers', 'AML for bullion dealers', 'Tranche 2 jewellers', 'precious metals AML compliance', 'AUSTRAC jewellers', 'TTR reporting jewellers'],
+    title: 'AML for Jewelers & Bullion Dealers | Tranche 2 | Lead AML',
+    description: 'High-value dealer AML compliance made easy. Prepare for July 2026 with specialized transaction monitoring and KYC for Australian jewelers and bullion dealers.',
+    keywords: ['AML for jewelers Australia', 'bullion dealer AML compliance', 'high-value goods Tranche 2', 'transaction monitoring for bullion', 'jeweler KYC software'],
     path: '/Sectors/Jewellers',
   },
   hero: {
     sectorName: 'Jewellers & Bullion Dealers',
     label: 'AML for Jewellers & Bullion',
-    headline: 'AML Compliance for Jewellers & Precious Metal Dealers',
+    headline: 'Tranche 2 AML Compliance for Jewelers & Bullion Dealers',
     subheadline: 'Protect your business from illicit funds. Lead AML provides simple, point-of-sale KYC tools and automated threshold reporting for high-value transactions.',
     guideLabel: 'Download Jewellers AML Guide',
     guideName: 'Jewellers & Bullion Dealers AML Compliance Guide',
     guideKey: 'jewelers_bullion',
   },
   obligationsSection: {
-    title: 'The $10,000 Threshold: Know Your Obligations',
+    title: 'Meeting July 2026 Obligations for High-Value Transactions',
     intro: 'Dealers in precious metals, stones, and products are highly vulnerable to criminal exploitation because these items retain value and are easily transported. From 1 July 2026, your business must have an AML/CTF program in place if you accept $10,000 or more in physical currency (cash) or virtual assets for a purchase or sale.',
     bullets: [
       'This applies to a single transaction or several linked transactions — known as "structuring".',
@@ -36,11 +36,11 @@ const config = {
     },
   },
   risksSection: {
-    title: 'Simple Compliance at the Point of Sale',
+    title: 'Real-Time Transaction Monitoring & Risk Profiling',
     intro: "You don't want compliance paperwork slowing down a major sale. Lead AML provides a streamlined platform tailored for high-value retail and bullion dealing — so your team can verify, screen, and report without disrupting the customer experience.",
   },
   howWeHelpSection: {
-    title: 'How Lead AML Helps Your Business',
+    title: 'Audit-Ready Record Keeping for Cash Purchases',
     intro: null,
     bullets: [
       'Structuring & Linked Transaction Alerts: Our platform monitors for customers attempting to split payments over several days to avoid the $10,000 reporting threshold.',
