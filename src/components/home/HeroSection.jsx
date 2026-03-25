@@ -61,11 +61,11 @@ function YouTubeEmbed({ embedUrl, embedUrlUnmuted, thumbnailUrl, watchUrl }) {
 }
 
 const industries = [
-  { label: 'Accountants', icon: Calculator, page: 'Industries' },
-  { label: 'Lawyers', icon: Scale, page: 'Industries' },
-  { label: 'Conveyancers', icon: HomeIcon, page: 'Industries' },
-  { label: 'Jewelers & Bullion', icon: Gem, page: 'Industries' },
-  { label: 'Real Estate Agents', icon: Building2, page: 'Industries' },
+  { label: 'Accountants', icon: Calculator, path: '/Sectors/Accountants' },
+  { label: 'Lawyers', icon: Scale, path: '/Sectors/Lawyers' },
+  { label: 'Conveyancers', icon: HomeIcon, path: '/Sectors/Conveyancers' },
+  { label: 'Jewelers & Bullion', icon: Gem, path: '/Sectors/Jewellers' },
+  { label: 'Real Estate Agents', icon: Building2, path: '/Sectors/RealEstate' },
 ];
 
 /**
@@ -127,7 +127,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#1e2d45]">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-teal-400/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-16 lg:pt-28 lg:pb-24 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -135,7 +135,7 @@ export default function HeroSection() {
           {/* Left Content */}
           <div>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <span className="bg-[var(--brand-teal)]/20 text-zinc-50 mb-6 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest rounded-full inline-block border border-[var(--brand-teal)]/40">
+              <span className="bg-white/10 text-zinc-50 mb-6 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest rounded-full inline-block border border-white/20">
                 AML. DONE RIGHT.
               </span>
             </motion.div>
@@ -145,7 +145,7 @@ export default function HeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6"
               style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
               Professional AML consulting{' '}
-              <span className="text-[var(--brand-teal)]">and compliance tools</span>{' '}
+              <span className="text-blue-300">and compliance tools</span>{' '}
               for your business
             </motion.h1>
 
@@ -159,7 +159,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 onClick={() => setShowConsultation(true)}
-                className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-8 h-14 text-lg font-semibold shadow-lg transition-all duration-300">
+                className="bg-white text-[var(--brand-navy)] hover:bg-blue-50 rounded-full px-7 h-11 text-base font-semibold shadow-lg transition-all duration-300">
                 Book a Free 15-Min Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -170,9 +170,9 @@ export default function HeroSection() {
               {industries.map((ind) => (
                 <Link
                   key={ind.label}
-                  to={createPageUrl(ind.page)}
-                  className="group flex items-center gap-1.5 px-4 py-2.5 rounded-xl sm:rounded-full bg-white/10 border border-white/25 hover:bg-white/20 hover:border-white/50 transition-all duration-300 w-full sm:w-auto">
-                  <ind.icon className="h-3.5 w-3.5 text-blue-200 group-hover:text-white transition-colors" />
+                  to={ind.path}
+                  className="group flex items-center gap-2 px-4 py-2.5 rounded-xl sm:rounded-full bg-white/10 border border-white/25 hover:bg-white/20 hover:border-white/50 transition-all duration-300 w-full sm:w-auto">
+                  <ind.icon className="h-4 w-4 text-blue-200 group-hover:text-white transition-colors flex-shrink-0" />
                   <span className="text-sm font-medium text-blue-100 group-hover:text-white">{ind.label}</span>
                 </Link>
               ))}
@@ -215,7 +215,7 @@ export default function HeroSection() {
                   </video>
                   {hasEnded && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                      <button onClick={replay} className="flex flex-col items-center gap-2 text-white hover:text-[var(--brand-teal)] transition-colors">
+                      <button onClick={replay} className="flex flex-col items-center gap-2 text-white hover:text-blue-300 transition-colors">
                         <RotateCcw className="h-10 w-10" />
                         <span className="text-sm font-medium">Replay</span>
                       </button>
@@ -223,10 +223,10 @@ export default function HeroSection() {
                   )}
                   {!hasEnded && (
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3 flex items-center gap-3">
-                      <button onClick={togglePlay} className="text-white hover:text-[var(--brand-teal)] transition-colors">
+                      <button onClick={togglePlay} className="text-white hover:text-blue-300 transition-colors">
                         {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
                       </button>
-                      <button onClick={toggleMute} className="text-white hover:text-[var(--brand-teal)] transition-colors ml-auto">
+                      <button onClick={toggleMute} className="text-white hover:text-blue-300 transition-colors ml-auto">
                         {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
                       </button>
                     </div>

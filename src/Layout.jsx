@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronDown, Calculator, Scale, Home as HomeIcon, Gem, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Footer from './components/shared/Footer';
 import { siteConfig } from '@/lib/site-config';
@@ -14,6 +14,14 @@ const navItems = [
 { label: 'Resources', page: 'Resources' },
 { label: 'FAQs', page: 'FAQs' },
 { label: 'Contact', page: 'Contact' }];
+
+const sectorLinks = [
+  { label: 'Accountants', path: '/Sectors/Accountants', icon: Calculator },
+  { label: 'Lawyers', path: '/Sectors/Lawyers', icon: Scale },
+  { label: 'Conveyancers', path: '/Sectors/Conveyancers', icon: HomeIcon },
+  { label: 'Jewellers & Bullion', path: '/Sectors/Jewellers', icon: Gem },
+  { label: 'Real Estate Agents', path: '/Sectors/RealEstate', icon: Building2 },
+];
 
 
 export default function Layout({ children, currentPageName }) {
@@ -42,23 +50,50 @@ export default function Layout({ children, currentPageName }) {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) =>
-            <Link
-              key={item.page}
-              to={createPageUrl(item.page)}
-              className={`px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 ${
-              currentPageName === item.page ?
-              'text-white bg-white/20' :
-              'text-blue-100 hover:text-white hover:bg-white/10'}`
-              }>
-
-                {item.label}
-              </Link>
+              item.page === 'Industries' ? (
+                <div key="Industries" className="relative group">
+                  <Link
+                    to={createPageUrl('Industries')}
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 ${
+                      currentPageName === 'Industries'
+                        ? 'text-white bg-white/20'
+                        : 'text-blue-100 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    Industries <ChevronDown className="h-3.5 w-3.5 opacity-70" />
+                  </Link>
+                  {/* Dropdown */}
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#2D4059]/80 backdrop-blur-md border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                    <Link to={createPageUrl('Industries')} className="block px-4 py-2 text-sm text-blue-200 hover:text-white hover:bg-white/10 font-medium border-b border-white/10 mb-1">
+                      All Industries
+                    </Link>
+                    {sectorLinks.map((s) => (
+                      <Link key={s.path} to={s.path} className="flex items-center gap-2.5 px-4 py-2 text-sm text-blue-200 hover:text-white hover:bg-white/10 transition-colors">
+                        <s.icon className="h-3.5 w-3.5 flex-shrink-0" />
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.page}
+                  to={createPageUrl(item.page)}
+                  className={`px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 ${
+                    currentPageName === item.page
+                      ? 'text-white bg-white/20'
+                      : 'text-blue-100 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             )}
           </nav>
 
           <div className="hidden lg:block">
             <Link to={createPageUrl('Contact')}>
-              <Button className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full px-6 text-sm">
+              <Button className="bg-white text-[var(--brand-navy)] hover:bg-blue-50 rounded-full px-6 text-sm font-semibold">
                 Book a Demo <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
             </Link>
@@ -78,17 +113,33 @@ export default function Layout({ children, currentPageName }) {
           <div className="lg:hidden bg-[var(--brand-navy-dark)] border-t border-white/10">
             <div className="px-6 py-4 space-y-1">
               {navItems.map((item) => (
-                <button
-                  key={item.page}
-                  onClick={() => handleMobileNav(item.page)}
-                  className={`w-full text-left block px-4 py-3 rounded-lg text-sm font-medium ${
-                    currentPageName === item.page
-                      ? 'text-white bg-white/20'
-                      : 'text-blue-100 hover:bg-white/10'
-                  }`}
-                >
-                  {item.label}
-                </button>
+                <React.Fragment key={item.page}>
+                  <button
+                    onClick={() => handleMobileNav(item.page)}
+                    className={`w-full text-left block px-4 py-3 rounded-lg text-sm font-medium ${
+                      currentPageName === item.page
+                        ? 'text-white bg-white/20'
+                        : 'text-blue-100 hover:bg-white/10'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                  {item.page === 'Industries' && (
+                    <div className="pl-4 border-l border-white/10 ml-4 space-y-0.5">
+                      {sectorLinks.map((s) => (
+                        <Link
+                          key={s.path}
+                          to={s.path}
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-blue-300 hover:text-white hover:bg-white/10 transition-colors"
+                        >
+                          <s.icon className="h-3 w-3 flex-shrink-0" />
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
               <button
                 onClick={() => handleMobileNav('Contact')}
