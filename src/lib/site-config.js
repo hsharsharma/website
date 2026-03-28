@@ -23,5 +23,5 @@ export const siteConfig = {
   logoFooter: '/logo.png',   // Shown in the footer
 
   // ── Hero Video ─────────────────────────────
-  heroVideoUrl: 'https://youtu.be/-TLFauNErdM',
+  heroVideoUrl: 'https://youtu.be/g0bcgUtdv70',
 };
