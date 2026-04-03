@@ -14,7 +14,7 @@ const footerLinks = [
       { label: 'AML Consulting', page: 'Services' },
       { label: 'KYC/CDD Implementation', page: 'Services' },
       { label: 'Risk Profiling', page: 'Services' },
-      { label: 'AML App', page: 'AMLTool' },
+      { label: 'Lead AML App', page: 'AMLTool' },
     ],
   },
   {

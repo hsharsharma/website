@@ -16,7 +16,7 @@ export default function AMLTool() {
           <SectionHeading
             light
             as="h1"
-            label="AML App"
+            label="Lead AML App"
             title="AML Compliance Made Simple"
             description="A cloud-based compliance platform designed for accountants, lawyers, conveyancers, jewelers, and bullion dealers. Automate your AML workflows and stay audit-ready."
           />

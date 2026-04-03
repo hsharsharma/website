@@ -144,15 +144,25 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6"
               style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
-              Professional AML consulting{' '}
-              <span className="text-[var(--brand-teal)]">and compliance tools</span>{' '}
+              Professional AML{' '}
+              <Link to={createPageUrl('Services')} className="underline decoration-white/30 hover:decoration-white transition-colors">consulting</Link>{' '}
+              <Link to={createPageUrl('AMLTool')} className="text-[var(--brand-teal)] underline decoration-[var(--brand-teal)]/30 hover:decoration-[var(--brand-teal)] transition-colors">and compliance tools</Link>{' '}
               for your business
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               className="text-lg md:text-xl text-blue-100/90 leading-relaxed mb-8 max-w-xl">
-              Expert AML consulting solutions for accountants, lawyers, conveyancers, jewelers, bullion dealers, and real estate agents. Tranche 2 ready, practical, and audit-ready.
+              Expert AML{' '}
+              <Link to={createPageUrl('Services')} className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">consulting</Link>{' '}
+              solutions for{' '}
+              <Link to="/Sectors/Accountants" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">accountants</Link>,{' '}
+              <Link to="/Sectors/Lawyers" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">lawyers</Link>,{' '}
+              <Link to="/Sectors/Conveyancers" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">conveyancers</Link>,{' '}
+              <Link to="/Sectors/Jewellers" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">jewelers</Link>,{' '}
+              <Link to="/Sectors/Jewellers" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">bullion dealers</Link>, and{' '}
+              <Link to="/Sectors/RealEstate" className="font-bold text-white underline decoration-white/30 hover:decoration-white transition-colors">real estate agents</Link>.{' '}
+              Tranche 2 ready, practical, and audit-ready.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex flex-wrap gap-4 mb-10">

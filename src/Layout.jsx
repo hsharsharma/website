@@ -10,7 +10,7 @@ const navItems = [
 { label: 'Home', page: 'Home' },
 { label: 'Services', page: 'Services' },
 { label: 'Industries', page: 'Industries' },
-{ label: 'AML App', page: 'AMLTool' },
+{ label: 'Lead AML App', page: 'AMLTool' },
 { label: 'Resources', page: 'Resources' },
 { label: 'FAQs', page: 'FAQs' },
 { label: 'Contact', page: 'Contact' }];
