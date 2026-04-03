@@ -27,9 +27,9 @@ export default function CredibilitySection() {
             Why Lead AML
           </span>
           <p className="text-2xl md:text-3xl font-semibold text-white/90 leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: "'Barlow', 'Inter', sans-serif" }}>
-            "Delivered by AML experts with{' '}
-            <span className="text-[var(--brand-teal)]">decades of international experience</span>{' '}
-            in multinational financial institutions."
+            "Delivered by{' '}
+            <span className="text-[var(--brand-teal)]">CAMS certified AML experts</span>{' '}
+            with decades of international experience in multinational financial institutions."
           </p>
         </motion.div>
 
