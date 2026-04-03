@@ -37,6 +37,22 @@ export default function Layout({ children, currentPageName }) {
     navigate(createPageUrl(page));
   };
 
+  const handleBookDemo = () => {
+    setMobileOpen(false);
+    if (currentPageName === 'Contact') {
+      const el = document.getElementById('book-demo');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.remove('demo-highlight');
+        void el.offsetWidth;
+        el.classList.add('demo-highlight');
+        setTimeout(() => el.classList.remove('demo-highlight'), 1600);
+      }
+    } else {
+      navigate(createPageUrl('Contact'));
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navigation */}
@@ -91,11 +107,9 @@ export default function Layout({ children, currentPageName }) {
           </nav>
 
           <div className="hidden lg:block">
-            <Link to={createPageUrl('Contact')}>
-              <Button className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 text-sm font-semibold">
-                Book a Demo <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-              </Button>
-            </Link>
+            <Button onClick={handleBookDemo} className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 text-sm font-semibold">
+              Book a Demo <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            </Button>
           </div>
 
           {/* Mobile Toggle */}
@@ -140,7 +154,7 @@ export default function Layout({ children, currentPageName }) {
                 </React.Fragment>
               ))}
               <button
-                onClick={() => handleMobileNav('Contact')}
+                onClick={handleBookDemo}
                 className="w-full mt-2"
               >
                 <Button className="w-full bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full">

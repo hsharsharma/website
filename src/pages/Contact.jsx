@@ -24,7 +24,7 @@ export default function Contact() {
 
       <section className="bg-gray-50 pt-10 pb-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
+          <div id="book-demo" className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
             {/* Info Side */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
