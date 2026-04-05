@@ -47,7 +47,9 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
             <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-[var(--brand-blue-light)] flex items-center justify-center flex-shrink-0">
               <Icon className="h-6 w-6 lg:h-7 lg:w-7 text-[var(--brand-blue)]" />
             </div>
-            <h3 className="text-xl md:text-3xl font-bold text-gray-900">{title}</h3>
+            <h3 className="text-xl md:text-3xl font-bold text-gray-900">
+              {sectorPath ? <Link to={sectorPath} className="hover:text-[#2C3E5D]/80 transition-colors">{title}</Link> : title}
+            </h3>
           </div>
           <p className="text-[var(--brand-slate-light)] leading-relaxed mb-6">{intro}</p>
 
