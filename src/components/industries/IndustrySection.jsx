@@ -29,7 +29,7 @@ function DownloadButton({ label }) {
   );
 }
 
-export default function IndustrySection({ id, icon: Icon, title, intro, highlights, ctaLabel, imageAlt, reversed = false, specialFeatures = [], sectorPath }) {
+export default function IndustrySection({ id, icon: Icon, image, title, intro, highlights, ctaLabel, reversed = false, specialFeatures = [], sectorPath }) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <motion.div
@@ -104,9 +104,11 @@ export default function IndustrySection({ id, icon: Icon, title, intro, highligh
 
         {/* Visual — hidden on mobile, shown on lg+ */}
         <div className="hidden lg:block flex-1 w-full">
-          <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#2D4059]/5 to-[#243452]/10 flex items-center justify-center relative overflow-hidden border border-gray-100">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoNDQsNjIsOTMsMC4wOCkiLz48L3N2Zz4=')] opacity-50" />
-            <Icon className="h-24 w-24 text-[#2C3E5D]/20" />
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden flex items-center justify-center">
+            {image
+              ? <img src={image} alt={title} className="w-full h-full object-contain" />
+              : <Icon className="h-24 w-24 text-[#2C3E5D]/20" />
+            }
           </div>
         </div>
       </div>

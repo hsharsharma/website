@@ -18,6 +18,7 @@ const industries = [
 {
   id: 'accountants',
   icon: Calculator,
+  image: '/industry-accountants.png',
   title: 'Accountants',
   intro: 'Practical AML consulting for accounting firms. Ensure Tranche 2 readiness with our KYC/CDD workflows, risk assessment, name screening, and reporting support.',
   highlights: fivePillars,
@@ -27,6 +28,7 @@ const industries = [
 {
   id: 'lawyers',
   icon: Scale,
+  image: '/industry-lawyers.png',
   title: 'Lawyers',
   intro: 'AML compliance guidance for law firms, including trust account monitoring, KYC/CDD, name screening, and reporting obligations.',
   highlights: fivePillars,
@@ -36,6 +38,7 @@ const industries = [
 {
   id: 'conveyancers',
   icon: HomeIcon,
+  image: '/industry-conveyancers.png',
   title: 'Conveyancers',
   intro: 'AML compliance for property transactions. Smooth KYC/CDD, risk assessment, name screening, and reporting for conveyancers.',
   highlights: fivePillars,
@@ -46,6 +49,7 @@ const industries = [
 {
   id: 'jewelers',
   icon: Gem,
+  image: '/industry-jewellers.png',
   title: 'Jewelers & Bullion Dealers',
   intro: 'AML consulting for high-value goods, including KYC/CDD onboarding, name screening, and suspicious transaction monitoring.',
   highlights: fivePillars,
@@ -55,6 +59,7 @@ const industries = [
 {
   id: 'real-estate',
   icon: Building2,
+  image: '/industry-realestate.png',
   title: 'Real Estate Agents',
   intro: 'Lead AML provides AML consulting for real estate agents, ensuring smooth compliance with Tranche 2 reforms. From KYC/CDD onboarding to reporting, we help property professionals manage risks and stay audit-ready.',
   highlights: fivePillars,
