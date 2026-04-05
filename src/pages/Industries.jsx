@@ -38,7 +38,7 @@ const industries = [
 {
   id: 'conveyancers',
   icon: HomeIcon,
-  image: '/industry-conveyancers.png',
+  image: '/industry-conveyancers.jpg',
   title: 'Conveyancers',
   intro: 'AML compliance for property transactions. Smooth KYC/CDD, risk assessment, name screening, and reporting for conveyancers.',
   highlights: fivePillars,
