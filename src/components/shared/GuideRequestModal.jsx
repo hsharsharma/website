@@ -66,32 +66,59 @@ function SubmitButton({ loading }) {
   );
 }
 
+const GUIDE_HINTS = {
+  name: 'e.g. Jane Smith',
+  email: 'e.g. jane@company.com.au',
+  company: 'e.g. Smith & Associates',
+  phone: 'e.g. +61 4XX XXX XXX or 04XX XXX XXX',
+};
+
 export default function GuideRequestModal({ open, onClose, guideName, guideKey, pageSource }) {
   const [form, setForm] = useState({ name: '', email: '', company: '', industry: '', phone: '' });
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);   // { downloadUrl, hasAttachment }
+  const [result, setResult] = useState(null);
   const [serverError, setServerError] = useState('');
+
+  const validateField = (field, value) => {
+    switch (field) {
+      case 'name': return (!value || value.trim().length < 2) ? 'Please enter your full name (min 2 characters).' : '';
+      case 'email': return !isValidEmail(value) ? 'Please enter a valid business email (e.g. jane@company.com.au).' : '';
+      case 'company': return (!value || !value.trim()) ? 'Please enter your company name.' : '';
+      case 'industry': return !value ? 'Please select your industry.' : '';
+      case 'phone': return !isValidPhone(value) ? 'Please enter a valid phone number (e.g. 04XX XXX XXX).' : '';
+      default: return '';
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched(t => ({ ...t, [field]: true }));
+    setErrors(e => ({ ...e, [field]: validateField(field, form[field] || '') }));
+  };
+
+  const handleChange = (field, value) => {
+    setForm(f => ({ ...f, [field]: value }));
+    if (touched[field]) setErrors(e => ({ ...e, [field]: validateField(field, value) }));
+  };
 
   const validate = () => {
     const e = {};
-    if (!form.name || form.name.trim().length < 2)
-      e.name = 'Please enter your full name (min 2 characters).';
-    if (!isValidEmail(form.email))
-      e.email = 'Please enter a valid business email address.';
-    if (!form.company || !form.company.trim())
-      e.company = 'Please enter your company name.';
-    if (!form.industry)
-      e.industry = 'Please select your industry.';
-    if (!isValidPhone(form.phone))
-      e.phone = 'Please enter a valid phone number.';
+    ['name','email','company','industry','phone'].forEach(f => {
+      const err = validateField(f, form[f] || '');
+      if (err) e[f] = err;
+    });
     return e;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      setTouched({ name:true, email:true, company:true, industry:true, phone:true });
+      return;
+    }
     setErrors({});
     setServerError('');
     setLoading(true);
@@ -118,6 +145,7 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
   const handleClose = () => {
     setForm({ name: '', email: '', company: '', industry: '', phone: '' });
     setErrors({});
+    setTouched({});
     setServerError('');
     setResult(null);
     onClose();
@@ -180,7 +208,7 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
 
         ) : (
           /* ── Form state ─────────────────────────────────────────────────── */
-          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+          <form onSubmit={handleSubmit} className="space-y-4 mt-2" autoComplete="off">
 
             {serverError && (
               <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
@@ -191,53 +219,32 @@ export default function GuideRequestModal({ open, onClose, guideName, guideKey, 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label className="text-sm font-medium text-gray-700 mb-1 block">Full Name *</Label>
-                <Input
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Jane Smith"
-                  className={`h-11 ${errors.name ? 'border-red-400' : ''}`}
-                />
-                {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+                <Input value={form.name} onChange={(e) => handleChange('name', e.target.value)} onBlur={() => handleBlur('name')} autoComplete="off" placeholder="Jane Smith" className={`h-11 ${errors.name ? 'border-red-400' : ''}`} />
+                {errors.name ? <p className="text-xs text-red-500 mt-1">{errors.name}</p> : <p className="text-xs text-gray-400 mt-1">{GUIDE_HINTS.name}</p>}
               </div>
               <div>
                 <Label className="text-sm font-medium text-gray-700 mb-1 block">Work Email *</Label>
-                <Input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="jane@company.com"
-                  className={`h-11 ${errors.email ? 'border-red-400' : ''}`}
-                />
-                {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+                <Input type="email" value={form.email} onChange={(e) => handleChange('email', e.target.value)} onBlur={() => handleBlur('email')} autoComplete="off" placeholder="jane@company.com" className={`h-11 ${errors.email ? 'border-red-400' : ''}`} />
+                {errors.email ? <p className="text-xs text-red-500 mt-1">{errors.email}</p> : <p className="text-xs text-gray-400 mt-1">{GUIDE_HINTS.email}</p>}
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label className="text-sm font-medium text-gray-700 mb-1 block">Company Name *</Label>
-                <Input
-                  value={form.company}
-                  onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  placeholder="Acme Accounting"
-                  className={`h-11 ${errors.company ? 'border-red-400' : ''}`}
-                />
-                {errors.company && <p className="text-xs text-red-500 mt-1">{errors.company}</p>}
+                <Input value={form.company} onChange={(e) => handleChange('company', e.target.value)} onBlur={() => handleBlur('company')} autoComplete="off" placeholder="Acme Accounting" className={`h-11 ${errors.company ? 'border-red-400' : ''}`} />
+                {errors.company ? <p className="text-xs text-red-500 mt-1">{errors.company}</p> : <p className="text-xs text-gray-400 mt-1">{GUIDE_HINTS.company}</p>}
               </div>
               <div>
                 <Label className="text-sm font-medium text-gray-700 mb-1 block">Phone *</Label>
-                <Input
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  placeholder="+61 4XX XXX XXX"
-                  className={`h-11 ${errors.phone ? 'border-red-400' : ''}`}
-                />
-                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+                <Input value={form.phone} onChange={(e) => handleChange('phone', e.target.value)} onBlur={() => handleBlur('phone')} autoComplete="off" placeholder="+61 4XX XXX XXX" className={`h-11 ${errors.phone ? 'border-red-400' : ''}`} />
+                {errors.phone ? <p className="text-xs text-red-500 mt-1">{errors.phone}</p> : <p className="text-xs text-gray-400 mt-1">{GUIDE_HINTS.phone}</p>}
               </div>
             </div>
 
             <div>
               <Label className="text-sm font-medium text-gray-700 mb-1 block">Industry *</Label>
-              <Select value={form.industry} onValueChange={(v) => setForm({ ...form, industry: v })}>
+              <Select value={form.industry} onValueChange={(v) => { handleChange('industry', v); setTouched(t => ({ ...t, industry: true })); }}>
                 <SelectTrigger className={`h-11 ${errors.industry ? 'border-red-400' : ''}`}>
                   <SelectValue placeholder="Select your industry" />
                 </SelectTrigger>

@@ -16,34 +16,63 @@ function isValidPhone(phone) {
   return digits.length >= 8 && digits.length <= 15;
 }
 
+function isValidEmail(email) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
+}
+
+const HINTS = {
+  name: 'e.g. Jane Smith',
+  business: 'e.g. Smith & Co',
+  email: 'e.g. jane@smithco.com.au',
+  phone: 'e.g. +61 4XX XXX XXX or 04XX XXX XXX',
+};
+
 export default function ConsultationModal({ open, onClose }) {
   const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', industry: '', questions: '' });
-  const [phoneError, setPhoneError] = useState('');
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const validateField = (field, value) => {
+    switch (field) {
+      case 'name': return value.trim().length < 2 ? 'Please enter your full name.' : '';
+      case 'business': return !value.trim() ? 'Please enter your business name.' : '';
+      case 'email': return !isValidEmail(value) ? 'Please enter a valid email (e.g. jane@smithco.com.au).' : '';
+      case 'phone': return !isValidPhone(value) ? 'Please enter a valid phone number (e.g. 04XX XXX XXX).' : '';
+      default: return '';
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched(t => ({ ...t, [field]: true }));
+    setErrors(e => ({ ...e, [field]: validateField(field, form[field] || '') }));
+  };
+
+  const handleChange = (field, value) => {
+    setForm(f => ({ ...f, [field]: value }));
+    if (touched[field]) setErrors(e => ({ ...e, [field]: validateField(field, value) }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValidPhone(form.phone)) {
-      setPhoneError('Please enter a valid phone number.');
+    const fields = ['name', 'business', 'email', 'phone'];
+    const newErrors = {};
+    fields.forEach(f => { const err = validateField(f, form[f] || ''); if (err) newErrors[f] = err; });
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setTouched({ name: true, business: true, email: true, phone: true });
       return;
     }
-    setPhoneError('');
     setLoading(true);
     try {
       await submitToFormspree({
-        name: form.name,
-        company: form.business,
-        email: form.email,
-        phone: form.phone,
-        industry: form.industry,
-        questions: form.questions,
-        source: 'consultation_booking',
-        _subject: `New Consultation Request – ${form.name}`,
+        name: form.name, company: form.business, email: form.email,
+        phone: form.phone, industry: form.industry, questions: form.questions,
+        source: 'consultation_booking', _subject: `New Consultation Request – ${form.name}`,
       });
       setSuccess(true);
     } catch {
-      // fail silently — still show success to avoid frustrating users
       setSuccess(true);
     } finally {
       setLoading(false);
@@ -52,7 +81,8 @@ export default function ConsultationModal({ open, onClose }) {
 
   const handleClose = () => {
     setSuccess(false);
-    setPhoneError('');
+    setErrors({});
+    setTouched({});
     setForm({ name: '', business: '', email: '', phone: '', industry: '', questions: '' });
     onClose();
   };
@@ -71,26 +101,29 @@ export default function ConsultationModal({ open, onClose }) {
             <Button onClick={handleClose} className="mt-6 bg-[var(--brand-navy)] text-white rounded-full px-8">Done</Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 text-gray-900">
+          <form onSubmit={handleSubmit} className="space-y-4 text-gray-900" autoComplete="off">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Full Name *</Label>
-                <Input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required placeholder="Jane Smith" />
+                <Input value={form.name} onChange={e => handleChange('name', e.target.value)} onBlur={() => handleBlur('name')} autoComplete="off" placeholder="Jane Smith" className={errors.name ? 'border-red-400' : ''} />
+                {errors.name ? <p className="text-xs text-red-500 mt-1">{errors.name}</p> : <p className="text-xs text-gray-400 mt-1">{HINTS.name}</p>}
               </div>
               <div>
                 <Label>Business Name *</Label>
-                <Input value={form.business} onChange={e => setForm({ ...form, business: e.target.value })} required placeholder="Smith & Co" />
+                <Input value={form.business} onChange={e => handleChange('business', e.target.value)} onBlur={() => handleBlur('business')} autoComplete="off" placeholder="Smith & Co" className={errors.business ? 'border-red-400' : ''} />
+                {errors.business ? <p className="text-xs text-red-500 mt-1">{errors.business}</p> : <p className="text-xs text-gray-400 mt-1">{HINTS.business}</p>}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label>Email *</Label>
-                <Input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required placeholder="jane@smithco.com.au" />
+                <Input type="email" value={form.email} onChange={e => handleChange('email', e.target.value)} onBlur={() => handleBlur('email')} autoComplete="off" placeholder="jane@smithco.com.au" className={errors.email ? 'border-red-400' : ''} />
+                {errors.email ? <p className="text-xs text-red-500 mt-1">{errors.email}</p> : <p className="text-xs text-gray-400 mt-1">{HINTS.email}</p>}
               </div>
               <div>
                 <Label>Phone *</Label>
-                <Input value={form.phone} onChange={e => { setForm({ ...form, phone: e.target.value }); setPhoneError(''); }} placeholder="04xx xxx xxx" className={phoneError ? 'border-red-400' : ''} />
-                {phoneError && <p className="text-xs text-red-500 mt-1">{phoneError}</p>}
+                <Input value={form.phone} onChange={e => handleChange('phone', e.target.value)} onBlur={() => handleBlur('phone')} autoComplete="off" placeholder="04xx xxx xxx" className={errors.phone ? 'border-red-400' : ''} />
+                {errors.phone ? <p className="text-xs text-red-500 mt-1">{errors.phone}</p> : <p className="text-xs text-gray-400 mt-1">{HINTS.phone}</p>}
               </div>
             </div>
             <div>
@@ -104,12 +137,7 @@ export default function ConsultationModal({ open, onClose }) {
             </div>
             <div>
               <Label>Questions / Comments</Label>
-              <Textarea
-                value={form.questions}
-                onChange={e => setForm({ ...form, questions: e.target.value })}
-                placeholder="Any specific questions or topics you'd like to discuss..."
-                className="h-24 resize-none"
-              />
+              <Textarea value={form.questions} onChange={e => setForm({ ...form, questions: e.target.value })} placeholder="Any specific questions or topics you'd like to discuss..." className="h-24 resize-none" />
             </div>
             <Button type="submit" disabled={loading} className="w-full bg-[var(--brand-navy)] hover:bg-[var(--brand-navy-dark)] text-white rounded-full h-11 font-semibold">
               {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : 'Book My Free Consultation'}

@@ -15,17 +15,65 @@ const industries = [
   { value: 'other', label: 'Other' },
 ];
 
+function isValidEmail(email) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
+}
+
+const FIELD_HINTS = {
+  name: 'e.g. John Smith',
+  email: 'e.g. john@company.com.au',
+  company: 'e.g. Smith & Associates',
+  preferred_date: 'Select a future date (optional)',
+};
+
 export default function DemoForm() {
-  const [form, setForm] = useState({
-    name: '', email: '', company: '', industry: '', preferred_date: ''
-  });
+  const [form, setForm] = useState({ name: '', email: '', company: '', industry: '', preferred_date: '' });
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const validateField = (field, value) => {
+    switch (field) {
+      case 'name':
+        return value.trim().length < 2 ? 'Please enter your full name (min 2 characters).' : '';
+      case 'email':
+        return !isValidEmail(value) ? 'Please enter a valid email address (e.g. john@company.com.au).' : '';
+      case 'company':
+        return !value.trim() ? 'Please enter your company name.' : '';
+      case 'industry':
+        return !value ? 'Please select your industry.' : '';
+      default:
+        return '';
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched(t => ({ ...t, [field]: true }));
+    const error = validateField(field, form[field] || '');
+    setErrors(e => ({ ...e, [field]: error }));
+  };
+
+  const handleChange = (field, value) => {
+    setForm(f => ({ ...f, [field]: value }));
+    if (touched[field]) {
+      const error = validateField(field, value);
+      setErrors(e => ({ ...e, [field]: error }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.company || !form.industry) {
-      toast.error('Please fill in all required fields.');
+    // Validate all required fields
+    const requiredFields = ['name', 'email', 'company', 'industry'];
+    const newErrors = {};
+    requiredFields.forEach(field => {
+      const error = validateField(field, form[field] || '');
+      if (error) newErrors[field] = error;
+    });
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setTouched({ name: true, email: true, company: true, industry: true });
       return;
     }
     setLoading(true);
@@ -53,24 +101,38 @@ export default function DemoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Full Name *</Label>
           <Input
             value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            onChange={(e) => handleChange('name', e.target.value)}
+            onBlur={() => handleBlur('name')}
             placeholder="John Smith"
-            className="h-11" />
+            autoComplete="off"
+            className={`h-11 ${errors.name ? 'border-red-400' : ''}`}
+          />
+          {errors.name
+            ? <p className="text-xs text-red-500 mt-1">{errors.name}</p>
+            : <p className="text-xs text-gray-400 mt-1">{FIELD_HINTS.name}</p>
+          }
         </div>
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Email *</Label>
           <Input
             type="email"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) => handleChange('email', e.target.value)}
+            onBlur={() => handleBlur('email')}
             placeholder="john@company.com"
-            className="h-11" />
+            autoComplete="off"
+            className={`h-11 ${errors.email ? 'border-red-400' : ''}`}
+          />
+          {errors.email
+            ? <p className="text-xs text-red-500 mt-1">{errors.email}</p>
+            : <p className="text-xs text-gray-400 mt-1">{FIELD_HINTS.email}</p>
+          }
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -78,14 +140,21 @@ export default function DemoForm() {
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Company *</Label>
           <Input
             value={form.company}
-            onChange={(e) => setForm({ ...form, company: e.target.value })}
+            onChange={(e) => handleChange('company', e.target.value)}
+            onBlur={() => handleBlur('company')}
             placeholder="Your company name"
-            className="h-11" />
+            autoComplete="off"
+            className={`h-11 ${errors.company ? 'border-red-400' : ''}`}
+          />
+          {errors.company
+            ? <p className="text-xs text-red-500 mt-1">{errors.company}</p>
+            : <p className="text-xs text-gray-400 mt-1">{FIELD_HINTS.company}</p>
+          }
         </div>
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Industry *</Label>
-          <Select value={form.industry} onValueChange={(v) => setForm({ ...form, industry: v })}>
-            <SelectTrigger className="h-11">
+          <Select value={form.industry} onValueChange={(v) => { handleChange('industry', v); setTouched(t => ({ ...t, industry: true })); }}>
+            <SelectTrigger className={`h-11 ${errors.industry ? 'border-red-400' : ''}`}>
               <SelectValue placeholder="Select your industry" />
             </SelectTrigger>
             <SelectContent>
@@ -94,6 +163,7 @@ export default function DemoForm() {
               )}
             </SelectContent>
           </Select>
+          {errors.industry && <p className="text-xs text-red-500 mt-1">{errors.industry}</p>}
         </div>
       </div>
       <div>
@@ -102,8 +172,10 @@ export default function DemoForm() {
           type="date"
           value={form.preferred_date}
           min={new Date().toISOString().split('T')[0]}
-          onChange={(e) => setForm({ ...form, preferred_date: e.target.value })}
-          className="h-11" />
+          onChange={(e) => handleChange('preferred_date', e.target.value)}
+          className="h-11"
+        />
+        <p className="text-xs text-gray-400 mt-1">{FIELD_HINTS.preferred_date}</p>
       </div>
       <Button
         type="submit"

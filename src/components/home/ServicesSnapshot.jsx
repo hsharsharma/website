@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 import { UserCheck, ShieldAlert, Search, Activity, LayoutDashboard, Users, GraduationCap } from 'lucide-react';
 import SectionHeading from '../shared/SectionHeading';
 
@@ -39,6 +41,7 @@ const services = [
     title: 'Lead AML App Integration',
     description: 'Compliance dashboard with reminders, SMR/TTR templates, and 7-year audit-ready record keeping.',
     color: 'bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white',
+    link: createPageUrl('AMLTool'),
   },
 ];
 
@@ -55,22 +58,26 @@ export default function ServicesSnapshot() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
-              whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.06 }}
-              className="group p-7 rounded-2xl bg-white border border-gray-100 hover:border-transparent hover:shadow-xl hover:shadow-gray-100/80 transition-all duration-400 flex flex-col"
-            >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${service.color}`}>
-                <service.icon className="h-6 w-6" />
-              </div>
-              <h3 className="text-base font-bold text-gray-900 mb-2 leading-snug">{service.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{service.description}</p>
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            const to = service.link || createPageUrl('Services');
+            return (
+              <Link key={service.title} to={to} className="block">
+                <motion.div
+                  initial={isMobile ? false : { opacity: 0, scale: 0.97 }}
+                  whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                  className="group p-7 rounded-2xl bg-white border border-gray-100 hover:border-transparent hover:shadow-xl hover:shadow-gray-100/80 transition-all duration-400 flex flex-col h-full cursor-pointer"
+                >
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${service.color}`}>
+                    <service.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2 leading-snug">{service.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{service.description}</p>
+                </motion.div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

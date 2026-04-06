@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 import { Users, UserCheck, ShieldAlert, FileWarning, Plug, Archive, GraduationCap, CheckCircle2, Building } from 'lucide-react';
 import SectionHeading from '../components/shared/SectionHeading';
 import ServiceCard from '../components/services/ServiceCard';
@@ -71,7 +73,10 @@ export default function Services() {
           <div className="flex flex-wrap justify-center gap-4 md:gap-5 max-w-6xl mx-auto mb-8 md:mb-12">
             {services.map((service, index) =>
             <div key={service.title} className="w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]">
-              <ServiceCard {...service} index={index} />
+              {service.title === 'Lead AML App Integration'
+                ? <Link to={createPageUrl('AMLTool')} className="block h-full"><ServiceCard {...service} index={index} /></Link>
+                : <ServiceCard {...service} index={index} />
+              }
             </div>
             )}
           </div>

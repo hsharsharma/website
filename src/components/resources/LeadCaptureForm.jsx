@@ -27,25 +27,53 @@ function isValidEmail(email) {
   return !BLOCKED_DOMAINS.includes(domain);
 }
 
+const LEAD_HINTS = {
+  name: 'e.g. John Smith',
+  email: 'e.g. john@company.com.au',
+  company: 'e.g. Accounting Firm',
+};
+
 export default function LeadCaptureForm() {
   const [form, setForm] = useState({ name: '', email: '', company: '', industry: '' });
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [serverError, setServerError] = useState('');
 
+  const validateField = (field, value) => {
+    switch (field) {
+      case 'name': return (!value || value.trim().length < 2) ? 'Please enter your full name.' : '';
+      case 'email': return !isValidEmail(value) ? 'Please enter a valid business email (e.g. john@company.com.au).' : '';
+      case 'industry': return !value ? 'Please select your industry.' : '';
+      default: return '';
+    }
+  };
+
+  const handleBlur = (field) => {
+    setTouched(t => ({ ...t, [field]: true }));
+    setErrors(e => ({ ...e, [field]: validateField(field, form[field] || '') }));
+  };
+
+  const handleChange = (field, value) => {
+    setForm(f => ({ ...f, [field]: value }));
+    if (touched[field]) setErrors(e => ({ ...e, [field]: validateField(field, value) }));
+  };
+
   const validate = () => {
     const e = {};
-    if (!form.name || form.name.trim().length < 2) e.name = 'Please enter your full name.';
-    if (!isValidEmail(form.email)) e.email = 'Please enter a valid business email.';
-    if (!form.industry) e.industry = 'Please select your industry.';
+    ['name','email','industry'].forEach(f => { const err = validateField(f, form[f] || ''); if (err) e[f] = err; });
     return e;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      setTouched({ name:true, email:true, industry:true });
+      return;
+    }
     setErrors({});
     setServerError('');
     setLoading(true);
@@ -109,40 +137,25 @@ export default function LeadCaptureForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Full Name *</Label>
-          <Input
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            placeholder="John Smith"
-            className={`h-11 ${errors.name ? 'border-red-400' : ''}`}
-          />
-          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+          <Input value={form.name} onChange={(e) => handleChange('name', e.target.value)} onBlur={() => handleBlur('name')} autoComplete="off" placeholder="John Smith" className={`h-11 ${errors.name ? 'border-red-400' : ''}`} />
+          {errors.name ? <p className="text-xs text-red-500 mt-1">{errors.name}</p> : <p className="text-xs text-gray-400 mt-1">{LEAD_HINTS.name}</p>}
         </div>
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Work Email *</Label>
-          <Input
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            placeholder="john@company.com"
-            className={`h-11 ${errors.email ? 'border-red-400' : ''}`}
-          />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+          <Input type="email" value={form.email} onChange={(e) => handleChange('email', e.target.value)} onBlur={() => handleBlur('email')} autoComplete="off" placeholder="john@company.com" className={`h-11 ${errors.email ? 'border-red-400' : ''}`} />
+          {errors.email ? <p className="text-xs text-red-500 mt-1">{errors.email}</p> : <p className="text-xs text-gray-400 mt-1">{LEAD_HINTS.email}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Company</Label>
-          <Input
-            value={form.company}
-            onChange={(e) => setForm({ ...form, company: e.target.value })}
-            placeholder="e.g. Accounting Firm"
-            className="h-11"
-          />
+          <Input value={form.company} onChange={(e) => handleChange('company', e.target.value)} autoComplete="off" placeholder="e.g. Accounting Firm" className="h-11" />
+          <p className="text-xs text-gray-400 mt-1">{LEAD_HINTS.company}</p>
         </div>
         <div>
           <Label className="text-sm font-medium text-gray-700 mb-1.5 block">Industry *</Label>
-          <Select value={form.industry} onValueChange={(v) => setForm({ ...form, industry: v })}>
+          <Select value={form.industry} onValueChange={(v) => { handleChange('industry', v); setTouched(t => ({ ...t, industry: true })); }}>
             <SelectTrigger className={`h-11 ${errors.industry ? 'border-red-400' : ''}`}>
               <SelectValue placeholder="Select your industry" />
             </SelectTrigger>
