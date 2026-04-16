@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://leadaml.com.au/Pricing</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://leadaml.com.au/Resources</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
