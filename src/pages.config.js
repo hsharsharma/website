@@ -53,6 +53,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const FAQs = lazy(() => import('./pages/FAQs'));
 const Home = lazy(() => import('./pages/Home'));
 const Industries = lazy(() => import('./pages/Industries'));
+const Pricing = lazy(() => import('./pages/Pricing'));
 const Resources = lazy(() => import('./pages/Resources'));
 const Services = lazy(() => import('./pages/Services'));
 import __Layout from './Layout.jsx';
@@ -64,6 +65,7 @@ export const PAGES = {
     "FAQs": FAQs,
     "Home": Home,
     "Industries": Industries,
+    "Pricing": Pricing,
     "Resources": Resources,
     "Services": Services,
 }

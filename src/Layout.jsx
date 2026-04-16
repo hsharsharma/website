@@ -11,6 +11,7 @@ const navItems = [
 { label: 'Services', page: 'Services' },
 { label: 'Industries', page: 'Industries' },
 { label: 'Lead AML App', page: 'AMLTool' },
+{ label: 'Pricing', page: 'Pricing' },
 { label: 'Resources', page: 'Resources' },
 { label: 'FAQs', page: 'FAQs' },
 { label: 'Contact', page: 'Contact' }];
