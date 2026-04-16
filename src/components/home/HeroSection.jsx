@@ -5,7 +5,6 @@ import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Calculator, Scale, Home as HomeIcon, Gem, Building2, Play, Pause, Volume2, VolumeX, RotateCcw } from 'lucide-react';
 import ConsultationModal from './ConsultationModal';
-import ObligationCheckModal from './ObligationCheckModal';
 import { siteConfig } from '@/lib/site-config';
 
 /**
@@ -98,7 +97,6 @@ const isLocalVideo = !isYouTube && !!heroVideoUrl;
 
 export default function HeroSection() {
   const [showConsultation, setShowConsultation] = useState(false);
-  const [showObligation, setShowObligation] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
@@ -273,24 +271,9 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Check Obligation CTA Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-12 p-5 rounded-2xl bg-white/[0.08] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <p className="text-white font-semibold text-base">Not sure if you're obligated?</p>
-            <p className="text-blue-100/90 text-sm mt-0.5">Check your Tranche 2 AML obligations in 2 minutes.</p>
-          </div>
-          <Button
-            onClick={() => setShowObligation(true)}
-            className="bg-white text-[var(--brand-navy)] hover:bg-blue-50 rounded-full px-6 font-semibold text-sm whitespace-nowrap">
-            Check My Obligation →
-          </Button>
-        </motion.div>
       </div>
 
       <ConsultationModal open={showConsultation} onClose={() => setShowConsultation(false)} />
-      <ObligationCheckModal open={showObligation} onClose={() => setShowObligation(false)} />
     </section>
   );
 }
