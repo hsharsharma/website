@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Menu, X, ArrowRight, ChevronDown, Calculator, Scale, Home as HomeIcon, Gem, Building2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import Footer from './components/shared/Footer';
 import { siteConfig } from '@/lib/site-config';
 
@@ -36,22 +35,6 @@ export default function Layout({ children, currentPageName }) {
   const handleMobileNav = (page) => {
     setMobileOpen(false);
     navigate(createPageUrl(page));
-  };
-
-  const handleBookDemo = () => {
-    setMobileOpen(false);
-    if (currentPageName === 'Contact') {
-      const el = document.getElementById('book-demo');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        el.classList.remove('demo-highlight');
-        void el.offsetWidth;
-        el.classList.add('demo-highlight');
-        setTimeout(() => el.classList.remove('demo-highlight'), 1600);
-      }
-    } else {
-      navigate(createPageUrl('Contact'));
-    }
   };
 
   return (
