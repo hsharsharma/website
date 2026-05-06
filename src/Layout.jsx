@@ -107,10 +107,23 @@ export default function Layout({ children, currentPageName }) {
             )}
           </nav>
 
-          <div className="hidden lg:block">
-            <Button onClick={handleBookDemo} className="bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 text-sm font-semibold">
-              Book a Demo <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Button>
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="https://app.leadaml.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2 rounded-full text-sm font-semibold text-white border border-white/30 hover:bg-white/10 transition-colors duration-200"
+            >
+              Login
+            </a>
+            <a
+              href="https://app.leadaml.com.au/register"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200"
+            >
+              Try Free — No Obligation <ArrowRight className="h-3.5 w-3.5" />
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -154,14 +167,22 @@ export default function Layout({ children, currentPageName }) {
                   )}
                 </React.Fragment>
               ))}
-              <button
-                onClick={handleBookDemo}
-                className="w-full mt-2"
+              <a
+                href="https://app.leadaml.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full mt-2 px-4 py-3 rounded-full text-sm font-semibold text-center text-white border border-white/30 hover:bg-white/10 transition-colors"
               >
-                <Button className="w-full bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-full">
-                  Book a Demo
-                </Button>
-              </button>
+                Login
+              </a>
+              <a
+                href="https://app.leadaml.com.au/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full mt-2 px-4 py-3 rounded-full text-sm font-semibold text-center bg-white text-[#2D4059] hover:bg-blue-50 transition-colors"
+              >
+                Try Free — No Obligation
+              </a>
             </div>
           </div>
         )}
