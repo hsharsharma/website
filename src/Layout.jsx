@@ -9,7 +9,7 @@ const navItems = [
 { label: 'Home', page: 'Home' },
 { label: 'Services', page: 'Services' },
 { label: 'Industries', page: 'Industries' },
-{ label: 'Lead AML App', page: 'AMLTool' },
+{ label: 'AML App', page: 'AMLTool' },
 { label: 'Pricing', page: 'Pricing' },
 { label: 'Resources', page: 'Resources' },
 { label: 'FAQs', page: 'FAQs' },
@@ -105,7 +105,7 @@ export default function Layout({ children, currentPageName }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200"
             >
-              Try Free — No Obligation <ArrowRight className="h-3.5 w-3.5" />
+              Register <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
 
@@ -164,7 +164,7 @@ export default function Layout({ children, currentPageName }) {
                 rel="noopener noreferrer"
                 className="block w-full mt-2 px-4 py-3 rounded-full text-sm font-semibold text-center bg-white text-[#2D4059] hover:bg-blue-50 transition-colors"
               >
-                Try Free — No Obligation
+                Register
               </a>
             </div>
           </div>
