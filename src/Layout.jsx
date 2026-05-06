@@ -95,17 +95,9 @@ export default function Layout({ children, currentPageName }) {
               href="https://app.leadaml.com.au"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 rounded-full text-sm font-semibold text-white border border-white/30 hover:bg-white/10 transition-colors duration-200"
-            >
-              Login
-            </a>
-            <a
-              href="https://app.leadaml.com.au/register"
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-white text-[#2D4059] hover:bg-blue-50 rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200"
             >
-              Register <ArrowRight className="h-3.5 w-3.5" />
+              Login / Register <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
 
@@ -154,17 +146,9 @@ export default function Layout({ children, currentPageName }) {
                 href="https://app.leadaml.com.au"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full mt-2 px-4 py-3 rounded-full text-sm font-semibold text-center text-white border border-white/30 hover:bg-white/10 transition-colors"
-              >
-                Login
-              </a>
-              <a
-                href="https://app.leadaml.com.au/register"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block w-full mt-2 px-4 py-3 rounded-full text-sm font-semibold text-center bg-white text-[#2D4059] hover:bg-blue-50 transition-colors"
               >
-                Register
+                Login / Register
               </a>
             </div>
           </div>
