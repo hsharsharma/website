@@ -51,7 +51,7 @@ export default function AMLTool() {
             <span className="text-gray-500 font-normal">Register and use.</span>
           </p>
           <a
-            href="https://app.leadaml.com.au/register"
+            href="https://app.leadaml.com.au/login"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#2C3E5D] text-white hover:bg-[#1e2d45] rounded-full px-6 py-2.5 text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
